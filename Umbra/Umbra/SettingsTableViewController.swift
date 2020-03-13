@@ -18,8 +18,27 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // TODO: how to get the actual version of the app from the setup page in xcode to be set at this label's value??? that will make is simpler to change version numbers in the future. 
+        versionLabel.text = "Version: \(version)"
+        
+        
     }
 
+    
+    
+    var version: String = "1.0.0"
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
+    
+    @IBAction func githubPageButtonTapped(_ sender: UIButton) {
+        
+        // when the GitHub Page button is tapped, transition to the githib link in safari.
+        
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
