@@ -50,7 +50,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="List Templates" prompt="Umbra" id="jaH-Eo-846">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="cHT-LJ-9fd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8T-AM-kfv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8T-AM-kfv">
                                 <rect key="frame" x="261" y="41" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Template"/>
@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="About Umbra" id="TAa-SU-IhA">
+                            <tableViewSection headerTitle="Section-1" id="TAa-SU-IhA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ONH-dT-NCb">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
@@ -124,28 +124,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONH-dT-NCb" id="gIK-tf-1hd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Umbra: Templated Lists App" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiS-dL-zMA">
-                                                    <rect key="frame" x="16" y="11.5" width="217" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyu-hX-s3G">
-                                                    <rect key="frame" x="268" y="6" width="87" height="32"/>
-                                                    <state key="normal" title="GitHub Page"/>
-                                                    <connections>
-                                                        <action selector="githubPageButtonTapped:" destination="aJw-zV-pqe" eventType="touchUpInside" id="xfE-ZZ-weH"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="hyu-hX-s3G" secondAttribute="trailing" constant="20" symbolic="YES" id="2Uj-bK-rqm"/>
-                                                <constraint firstItem="TiS-dL-zMA" firstAttribute="leading" secondItem="gIK-tf-1hd" secondAttribute="leadingMargin" id="Ee4-K5-o15"/>
-                                                <constraint firstItem="hyu-hX-s3G" firstAttribute="top" secondItem="gIK-tf-1hd" secondAttribute="topMargin" constant="-5" id="dik-Zc-q0t"/>
-                                                <constraint firstItem="hyu-hX-s3G" firstAttribute="centerY" secondItem="TiS-dL-zMA" secondAttribute="centerY" id="s45-eE-oeh"/>
-                                                <constraint firstItem="hyu-hX-s3G" firstAttribute="centerY" secondItem="gIK-tf-1hd" secondAttribute="centerY" id="vbm-fq-XaG"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="p5Y-zH-iWP">
@@ -162,17 +140,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gxq-oC-Ktf" id="reU-ef-rtJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYn-Ab-tNf">
-                                                    <rect key="frame" x="16" y="11" width="57" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="pYn-Ab-tNf" firstAttribute="leading" secondItem="reU-ef-rtJ" secondAttribute="leadingMargin" id="qP1-Sb-sBi"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -213,9 +180,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" prompt="Umbra" id="d2D-9o-qwL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="versionLabel" destination="pYn-Ab-tNf" id="hnw-un-EvK"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7zt-O4-c86" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
