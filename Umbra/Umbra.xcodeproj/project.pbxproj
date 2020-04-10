@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		244040C72440FE8500FF0A11 /* Umbra.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 244040C52440FE8500FF0A11 /* Umbra.xcdatamodeld */; };
 		244040C92440FEF000FF0A11 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040C82440FEF000FF0A11 /* ListItem.swift */; };
+		244040CB24411A7100FF0A11 /* ListTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CA24411A7100FF0A11 /* ListTemplateCell.swift */; };
+		244040CD24411A8B00FF0A11 /* UsableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CC24411A8B00FF0A11 /* UsableListCell.swift */; };
+		244040CF24411ABD00FF0A11 /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CE24411ABD00FF0A11 /* ListItemCell.swift */; };
 		249E5B5D2412C8A200E0406E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B5C2412C8A200E0406E /* AppDelegate.swift */; };
 		249E5B5F2412C8A200E0406E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B5E2412C8A200E0406E /* SceneDelegate.swift */; };
 		249E5B662412C8A200E0406E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B642412C8A200E0406E /* Main.storyboard */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		244040C62440FE8500FF0A11 /* Umbra.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Umbra.xcdatamodel; sourceTree = "<group>"; };
 		244040C82440FEF000FF0A11 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		244040CA24411A7100FF0A11 /* ListTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTemplateCell.swift; sourceTree = "<group>"; };
+		244040CC24411A8B00FF0A11 /* UsableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsableListCell.swift; sourceTree = "<group>"; };
+		244040CE24411ABD00FF0A11 /* ListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
 		249E5B592412C8A200E0406E /* Umbra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249E5B5C2412C8A200E0406E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		249E5B5E2412C8A200E0406E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,8 +82,11 @@
 				249E5B642412C8A200E0406E /* Main.storyboard */,
 				249E5B672412C8A400E0406E /* Assets.xcassets */,
 				244040C82440FEF000FF0A11 /* ListItem.swift */,
+				244040CE24411ABD00FF0A11 /* ListItemCell.swift */,
 				249E5B7A2412CD4700E0406E /* ListTemplate.swift */,
+				244040CA24411A7100FF0A11 /* ListTemplateCell.swift */,
 				249E5B7C2412CE8B00E0406E /* UsableList.swift */,
+				244040CC24411A8B00FF0A11 /* UsableListCell.swift */,
 				249E5B692412C8A400E0406E /* LaunchScreen.storyboard */,
 				249E5B6C2412C8A400E0406E /* Info.plist */,
 				244040C52440FE8500FF0A11 /* Umbra.xcdatamodeld */,
@@ -163,6 +172,9 @@
 				249E5B752412CA3300E0406E /* SettingsTableViewController.swift in Sources */,
 				249E5B5D2412C8A200E0406E /* AppDelegate.swift in Sources */,
 				249E5B7D2412CE8B00E0406E /* UsableList.swift in Sources */,
+				244040CD24411A8B00FF0A11 /* UsableListCell.swift in Sources */,
+				244040CF24411ABD00FF0A11 /* ListItemCell.swift in Sources */,
+				244040CB24411A7100FF0A11 /* ListTemplateCell.swift in Sources */,
 				249E5B5F2412C8A200E0406E /* SceneDelegate.swift in Sources */,
 				249E5B772412CA4300E0406E /* ListsTableViewController.swift in Sources */,
 			);

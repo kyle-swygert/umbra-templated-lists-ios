@@ -24,5 +24,12 @@ class ListTemplate {
         self.description = ""
     }
     
+    init(templateName: String = "NewTemplate", listItems: [ListItem] = [], description: String = "default description") {
+        self.templateName = templateName
+        self.templateID = UUID().uuidString
+        self.listItems = listItems
+        self.description = description
+    }
+    
     
 }

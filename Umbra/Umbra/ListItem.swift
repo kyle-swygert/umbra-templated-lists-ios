@@ -20,6 +20,12 @@ class ListItem {
         self.isChecked = isChecked
     }
     
+    init (itemText: String) {
+        self.itemText = itemText
+        self.itemID = UUID().uuidString // randomly generated string
+        self.isChecked = false
+    }
+    
     
     
 }

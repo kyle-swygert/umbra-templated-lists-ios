@@ -11,6 +11,8 @@ import UIKit
 class TemplatesTableViewController: UITableViewController {
 
     
+    var templateListsArr: [ListTemplate] = []
+    
     
     @IBAction func newTemplateButtonTapped(_ sender: UIButton) {
         
@@ -33,18 +35,36 @@ class TemplatesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        // NOTE: I am adding in a hardcoded example templateList for before I implement the CoreDate Features of the app.
+        
+        var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", listItems: [], description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!")
+        
+        tempTemplateList.listItems.append(ListItem(itemText: "2 eggs"))
+        tempTemplateList.listItems.append(ListItem(itemText: "2/3 cup milk"))
+        tempTemplateList.listItems.append(ListItem(itemText: "1/4 tsp cinnamon"))
+        tempTemplateList.listItems.append(ListItem(itemText: "1/4 tsp nutmeg"))
+        tempTemplateList.listItems.append(ListItem(itemText: "1 tsp vanilla"))
+        tempTemplateList.listItems.append(ListItem(itemText: "Bread"))
+        
+        
+        templateListsArr.append(tempTemplateList)
+        
+        
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return templateListsArr.count
     }
 
     /*
