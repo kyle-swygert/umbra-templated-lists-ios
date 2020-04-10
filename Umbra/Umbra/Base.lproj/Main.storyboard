@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,13 +34,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KvT-2K-eox">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listTemplateCell" rowHeight="50" id="KvT-2K-eox" customClass="ListTemplateCell" customModule="Umbra" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KvT-2K-eox" id="ff1-LF-AcM">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYF-f6-LOi">
+                                            <rect key="frame" x="21" y="16" width="42" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cYF-f6-LOi" firstAttribute="leading" secondItem="ff1-LF-AcM" secondAttribute="leadingMargin" constant="5" id="7EV-mI-MJ4"/>
+                                        <constraint firstItem="cYF-f6-LOi" firstAttribute="top" secondItem="ff1-LF-AcM" secondAttribute="topMargin" constant="5" id="G3e-07-Uwa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cYF-f6-LOi" secondAttribute="bottom" constant="5" id="vUF-2t-pk2"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cYF-f6-LOi" secondAttribute="trailing" constant="20" symbolic="YES" id="zLo-Rt-t42"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="templateTitleLabel" destination="cYF-f6-LOi" id="A80-66-cdG"/>
+                                    <segue destination="gsn-qt-zRF" kind="presentation" id="sUv-Of-EeX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,12 +68,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="List Templates" prompt="Umbra" id="jaH-Eo-846">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="cHT-LJ-9fd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8T-AM-kfv">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y8T-AM-kfv">
                                 <rect key="frame" x="261" y="41" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New Template"/>
                                 <connections>
                                     <action selector="newTemplateButtonTapped:" destination="lO5-hB-93i" eventType="touchUpInside" id="KCh-Fv-0W6"/>
+                                    <segue destination="l3c-fo-hwr" kind="show" id="jTZ-4E-QiR"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -64,7 +83,64 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTC-gk-FbV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="-778.56071964017997"/>
+            <point key="canvasLocation" x="2276" y="-1302"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="EqC-7i-Ao7">
+            <objects>
+                <tableViewController id="gsn-qt-zRF" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gfq-7f-KdE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3hs-xM-jWR">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3hs-xM-jWR" id="sFk-Yy-dqX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gsn-qt-zRF" id="az7-bV-bH3"/>
+                            <outlet property="delegate" destination="gsn-qt-zRF" id="qIV-ee-Efa"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ssb-CF-s8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3321" y="-901"/>
+        </scene>
+        <!--Create Template List-->
+        <scene sceneID="TtZ-wD-Agc">
+            <objects>
+                <tableViewController id="l3c-fo-hwr" customClass="CreateTemplateListViewController" customModule="Umbra" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="veQ-Uf-j6Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bDl-wN-QGM">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bDl-wN-QGM" id="Qsr-7f-JiJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="l3c-fo-hwr" id="zTb-qm-A3v"/>
+                            <outlet property="delegate" destination="l3c-fo-hwr" id="2MS-ab-ksV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Create Template List" prompt="Umbra" id="cjC-3L-Cu8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Td-R6-syh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3335" y="-1667"/>
         </scene>
         <!--Lists-->
         <scene sceneID="GL6-t3-kZe">
@@ -75,7 +151,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tc9-ib-rMN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="usableListCell" id="tc9-ib-rMN" customClass="UsableListCell" customModule="Umbra" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc9-ib-rMN" id="DGB-lN-4YJ">
@@ -116,7 +192,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Section-1" id="TAa-SU-IhA">
+                            <tableViewSection headerTitle="About Umbra" id="TAa-SU-IhA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ONH-dT-NCb">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
@@ -183,7 +259,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7zt-O4-c86" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="778.56071964017997"/>
+            <point key="canvasLocation" x="2276" y="1227"/>
         </scene>
         <!--Templates-->
         <scene sceneID="Rkf-DQ-xme">
@@ -202,7 +278,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vb-Ft-BZK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="-779"/>
+            <point key="canvasLocation" x="1337" y="-1302"/>
         </scene>
         <!--Lists-->
         <scene sceneID="phV-DQ-faW">
@@ -240,12 +316,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgR-jw-psD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="779"/>
+            <point key="canvasLocation" x="1337" y="1227"/>
         </scene>
     </scenes>
     <resources>
-        <image name="folder.fill" catalog="system" width="64" height="46"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="list.bullet" catalog="system" width="64" height="44"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
     </resources>
 </document>

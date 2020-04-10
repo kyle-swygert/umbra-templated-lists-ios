@@ -37,6 +37,12 @@ class TemplatesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         
+        
+        
+        
+        tableView.rowHeight = 55
+        
+        
         // NOTE: I am adding in a hardcoded example templateList for before I implement the CoreDate Features of the app.
         
         var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", listItems: [], description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!")
@@ -67,15 +73,20 @@ class TemplatesTableViewController: UITableViewController {
         return templateListsArr.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listTemplateCell", for: indexPath) as! ListTemplateCell
 
         // Configure the cell...
+        
+        var currTemplateList = templateListsArr[indexPath.row]
+        
+        cell.templateTitleLabel.text = currTemplateList.templateName
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,17 +96,50 @@ class TemplatesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            
+            let removed = templateListsArr.remove(at: indexPath.row)
+                    
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // TODO: remove the corresponding object from the DataModel of the app.
+            
+           
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // when the row of the tableView is selected, segue to a view that displays all datamembers in the templateList.
+        // pass the whole current templateList object to the other view during a segue.
+        
+        let currTemplateList = templateListsArr[indexPath.row]
+        
+        // TEST: remove print later.
+        print("Selected Cell: \(currTemplateList.templateName)")
+        print("List Items:")
+        
+        var count = 0
+        
+        for item in currTemplateList.listItems {
+            
+            print("item \(count): \(item.itemText)")
+            
+            count += 1
+        }
+        
+        
+        // create a segue to another view and initialize the view items.
+        
+    }
+    
 
     /*
     // Override to support rearranging the table view.

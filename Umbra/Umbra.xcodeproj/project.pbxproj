@@ -12,6 +12,7 @@
 		244040CB24411A7100FF0A11 /* ListTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CA24411A7100FF0A11 /* ListTemplateCell.swift */; };
 		244040CD24411A8B00FF0A11 /* UsableListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CC24411A8B00FF0A11 /* UsableListCell.swift */; };
 		244040CF24411ABD00FF0A11 /* ListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CE24411ABD00FF0A11 /* ListItemCell.swift */; };
+		244040D124412D8B00FF0A11 /* CreateTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040D024412D8B00FF0A11 /* CreateTemplateListViewController.swift */; };
 		249E5B5D2412C8A200E0406E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B5C2412C8A200E0406E /* AppDelegate.swift */; };
 		249E5B5F2412C8A200E0406E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B5E2412C8A200E0406E /* SceneDelegate.swift */; };
 		249E5B662412C8A200E0406E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249E5B642412C8A200E0406E /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		244040CA24411A7100FF0A11 /* ListTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTemplateCell.swift; sourceTree = "<group>"; };
 		244040CC24411A8B00FF0A11 /* UsableListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsableListCell.swift; sourceTree = "<group>"; };
 		244040CE24411ABD00FF0A11 /* ListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
+		244040D024412D8B00FF0A11 /* CreateTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemplateListViewController.swift; sourceTree = "<group>"; };
 		249E5B592412C8A200E0406E /* Umbra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Umbra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249E5B5C2412C8A200E0406E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		249E5B5E2412C8A200E0406E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		249E5B5B2412C8A200E0406E /* Umbra */ = {
 			isa = PBXGroup;
 			children = (
+				244040D024412D8B00FF0A11 /* CreateTemplateListViewController.swift */,
 				249E5B722412CA1C00E0406E /* TemplatesTableViewController.swift */,
 				249E5B762412CA4300E0406E /* ListsTableViewController.swift */,
 				249E5B742412CA3300E0406E /* SettingsTableViewController.swift */,
@@ -168,6 +171,7 @@
 				249E5B732412CA1C00E0406E /* TemplatesTableViewController.swift in Sources */,
 				244040C72440FE8500FF0A11 /* Umbra.xcdatamodeld in Sources */,
 				249E5B7B2412CD4700E0406E /* ListTemplate.swift in Sources */,
+				244040D124412D8B00FF0A11 /* CreateTemplateListViewController.swift in Sources */,
 				244040C92440FEF000FF0A11 /* ListItem.swift in Sources */,
 				249E5B752412CA3300E0406E /* SettingsTableViewController.swift in Sources */,
 				249E5B5D2412C8A200E0406E /* AppDelegate.swift in Sources */,
