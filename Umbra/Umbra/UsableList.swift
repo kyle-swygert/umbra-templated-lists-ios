@@ -10,13 +10,13 @@ import Foundation
 class UsableList {
     
     var listName: String
-    var id: String
-    var listItems: [String]
+    var listID: String
+    var listItems: [ListItem]
     var description: String
     
     init(listTemplate: ListTemplate) {
         self.listName = listTemplate.templateName
-        self.id = UUID().uuidString
+        self.listID = listTemplate.templateID
         self.listItems = listTemplate.listItems
         self.description = listTemplate.description
     }
