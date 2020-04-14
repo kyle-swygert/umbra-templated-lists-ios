@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241140D8244670BC00339B5A /* DisplayTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241140D7244670BC00339B5A /* DisplayTemplateTableViewController.swift */; };
+		241140DA2446710800339B5A /* DisplayTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241140D92446710700339B5A /* DisplayTemplateCell.swift */; };
 		244040C72440FE8500FF0A11 /* Umbra.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 244040C52440FE8500FF0A11 /* Umbra.xcdatamodeld */; };
 		244040C92440FEF000FF0A11 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040C82440FEF000FF0A11 /* ListItem.swift */; };
 		244040CB24411A7100FF0A11 /* ListTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244040CA24411A7100FF0A11 /* ListTemplateCell.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		241140D7244670BC00339B5A /* DisplayTemplateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTemplateTableViewController.swift; sourceTree = "<group>"; };
+		241140D92446710700339B5A /* DisplayTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTemplateCell.swift; sourceTree = "<group>"; };
 		244040C62440FE8500FF0A11 /* Umbra.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Umbra.xcdatamodel; sourceTree = "<group>"; };
 		244040C82440FEF000FF0A11 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		244040CA24411A7100FF0A11 /* ListTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTemplateCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				249E5B692412C8A400E0406E /* LaunchScreen.storyboard */,
 				249E5B6C2412C8A400E0406E /* Info.plist */,
 				244040C52440FE8500FF0A11 /* Umbra.xcdatamodeld */,
+				241140D7244670BC00339B5A /* DisplayTemplateTableViewController.swift */,
+				241140D92446710700339B5A /* DisplayTemplateCell.swift */,
 			);
 			path = Umbra;
 			sourceTree = "<group>";
@@ -168,12 +174,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				241140D8244670BC00339B5A /* DisplayTemplateTableViewController.swift in Sources */,
 				249E5B732412CA1C00E0406E /* TemplatesTableViewController.swift in Sources */,
 				244040C72440FE8500FF0A11 /* Umbra.xcdatamodeld in Sources */,
 				249E5B7B2412CD4700E0406E /* ListTemplate.swift in Sources */,
 				244040D124412D8B00FF0A11 /* CreateTemplateListViewController.swift in Sources */,
 				244040C92440FEF000FF0A11 /* ListItem.swift in Sources */,
 				249E5B752412CA3300E0406E /* SettingsTableViewController.swift in Sources */,
+				241140DA2446710800339B5A /* DisplayTemplateCell.swift in Sources */,
 				249E5B5D2412C8A200E0406E /* AppDelegate.swift in Sources */,
 				249E5B7D2412CE8B00E0406E /* UsableList.swift in Sources */,
 				244040CD24411A8B00FF0A11 /* UsableListCell.swift in Sources */,

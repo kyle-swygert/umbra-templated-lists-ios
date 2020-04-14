@@ -156,14 +156,29 @@ class TemplatesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if (segue.identifier == "fromListTemplatesToDisplayTemplate") {
+            // get the destination of the view and set the ListTemplate as the object that was just tapped.
+            
+            
+            let dest = segue.destination as! DisplayTemplateTableViewController
+            
+            
+            // TODO: How to get the actual cell that was just tapped on? could I get it from the sender object?
+            dest.currListTemplate = templateListsArr[0]
+            
+            
+        }
+        
+        
     }
-    */
+    
 
 }
