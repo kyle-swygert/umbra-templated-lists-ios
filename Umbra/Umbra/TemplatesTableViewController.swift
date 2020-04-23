@@ -13,7 +13,6 @@ class TemplatesTableViewController: UITableViewController {
     
     var templateListsArr: [ListTemplate] = []
     
-    
     @IBAction func newTemplateButtonTapped(_ sender: UIButton) {
         
         // segue to a new view where the user will create a new template.
@@ -120,6 +119,7 @@ class TemplatesTableViewController: UITableViewController {
         // when the row of the tableView is selected, segue to a view that displays all datamembers in the templateList.
         // pass the whole current templateList object to the other view during a segue.
         
+        
         let currTemplateList = templateListsArr[indexPath.row]
         
         // TEST: remove print later.
@@ -137,7 +137,7 @@ class TemplatesTableViewController: UITableViewController {
         
         
         // create a segue to another view and initialize the view items.
-        
+       
     }
     
 
@@ -159,20 +159,55 @@ class TemplatesTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
+    
+    @IBAction func unwindFromCreateTemplateView(sender: UIStoryboardSegue) {
+        // this is where the templateList object from the previous view will be stored into the data in this view.
+        
+        print("unwindFromCreateTemplateView()")
+        
+        let prevVC = sender.source as! CreateTemplateViewController
+        
+        let newTemplate = prevVC.newTemplateList
+        
+        templateListsArr.append(newTemplate)
+        
+        tableView.reloadData()
+        
+    }
+    
+    
+    
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
+        
+        print("sender: \(String(describing: sender))")
+        
+        
         if (segue.identifier == "fromListTemplatesToDisplayTemplate") {
             // get the destination of the view and set the ListTemplate as the object that was just tapped.
+            
+            //let cell = sender as! ListTemplateCell
+            
+            let currIndexPath = self.tableView.indexPathForSelectedRow
+            
+            
+            print("segueing to display the list that was just tapped")
+            
+            print("index path row: \(currIndexPath!.row)")
             
             
             let dest = segue.destination as! DisplayTemplateTableViewController
             
             
             // TODO: How to get the actual cell that was just tapped on? could I get it from the sender object?
-            dest.currListTemplate = templateListsArr[0]
+            
+            
+            dest.currListTemplate = templateListsArr[currIndexPath!.row]
             
             
         }

@@ -206,6 +206,9 @@
                                     <action selector="saveButtonTapped:" destination="Z7a-LK-9M0" eventType="touchUpInside" id="dtb-0r-HJA"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <segue destination="64r-Tg-Kcg" kind="unwind" identifier="unwindFromCreateTemplate" unwindAction="unwindFromCreateTemplateViewWithSender:" id="7Nw-o0-yWa"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -215,6 +218,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSu-mG-i3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="64r-Tg-Kcg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3335.1999999999998" y="-1646.6266866566718"/>
         </scene>

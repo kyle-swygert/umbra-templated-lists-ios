@@ -111,7 +111,7 @@ class CreateTemplateViewController: UIViewController, UITableViewDelegate, UITab
         
         // segue back to the TemplatesTableViewController and add this new ListTemplate to that array and display it in the tableView.
         
-        
+        performSegue(withIdentifier: "unwindFromCreateTemplate", sender: nil)
         
     }
     
