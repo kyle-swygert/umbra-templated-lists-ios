@@ -24,7 +24,7 @@ class ListTemplate {
         self.description = ""
     }
     
-    init(templateName: String = "NewTemplate", listItems: [ListItem] = [], description: String = "default description") {
+    init(templateName: String = "NewTemplate", description: String = "default description", listItems: [ListItem] = []) {
         self.templateName = templateName
         self.templateID = UUID().uuidString
         self.listItems = listItems
@@ -32,7 +32,7 @@ class ListTemplate {
     }
     
     // this initailizer is for creating an object from the DataModel items, so a new templateID is NOT going to be generated. 
-    init(templateName: String = "NewTemplate", listItems: [ListItem] = [], description: String = "default description", templateID: String = "uniqueID") {
+    init(templateName: String = "NewTemplate", description: String = "default description", listItems: [ListItem] = [], templateID: String = "uniqueID") {
         self.templateName = templateName
         self.templateID = templateID
         self.listItems = listItems

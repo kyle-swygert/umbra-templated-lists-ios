@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class TemplatesTableViewController: UITableViewController {
-
+    
     
     var templateListsArr: [ListTemplate] = []
     
@@ -36,10 +36,10 @@ class TemplatesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
@@ -55,7 +55,11 @@ class TemplatesTableViewController: UITableViewController {
         
         // NOTE: I am adding in a hardcoded example templateList for before I implement the CoreDate Features of the app.
         
-        var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", listItems: [], description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!")
+        
+        /*
+        //var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", listItems: [], description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!")
+        
+        var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!", listItems: [])
         
         tempTemplateList.listItems.append(ListItem(itemText: "2 eggs"))
         tempTemplateList.listItems.append(ListItem(itemText: "2/3 cup milk"))
@@ -66,10 +70,8 @@ class TemplatesTableViewController: UITableViewController {
         
         
         templateListsArr.append(tempTemplateList)
-        
-        
-        
-        
+ 
+        */
         
         // TODO: retrieve the templateLists from the DataModel and display them to the screen here.
         var allTemplates = getTemplateItems()
@@ -80,6 +82,8 @@ class TemplatesTableViewController: UITableViewController {
             
             printTemplateDataObj(temp)
             
+            var currList = templateData2TemplateObj(temp)
+            
             let childrenItems = getListItemsForParentTemplate(temp)
             
             
@@ -89,16 +93,41 @@ class TemplatesTableViewController: UITableViewController {
             // instantiate actual objects from these pieces of data, then add the whole ListTemplate to the templateListArr to display them on the app!
             
             for child in childrenItems {
-                // create a ListItem object from child and add it to the newly created ListTemplate object. 
+                // create a ListItem object from child and add it to the newly created ListTemplate object.
                 
+                var currChild = listItemData2ListItemObj(child)
+                
+                currList.listItems.append(currChild)
                 
                 
             }
             
-            
-            
+            // append the newly created list from the DataModel onto the array to populate the tableView.
+            templateListsArr.append(currList)
             
         }
+        
+    }
+    
+    func templateData2TemplateObj(_ dataObj: NSManagedObject) -> ListTemplate {
+        
+        let tempName = (dataObj.value(forKey: "templateName") as? String)!
+        let tempID = (dataObj.value(forKey: "templateID") as? String)!
+        let tempDesc = (dataObj.value(forKey: "templateDescription") as? String)!
+        
+        
+        return ListTemplate(templateName: tempName, description: tempDesc, listItems: [], templateID: tempID)
+        
+    }
+    
+    
+    // this function will create ListItems that are to be used in the Template View, so the boolean values of the isChecked members will always be set to false. This will be different when a usable list is being created though.
+    func listItemData2ListItemObj(_ dataObj: NSManagedObject) -> ListItem {
+        
+        let itemID = (dataObj.value(forKey: "itemID") as? String)!
+        let itemText = (dataObj.value(forKey: "itemText") as? String)!
+        
+        return ListItem(itemText: itemText, itemID: itemID)
         
     }
     
@@ -110,7 +139,7 @@ class TemplatesTableViewController: UITableViewController {
         
         
     }
-
+    
     
     // this function will retrieve all the ListTemplate objects from the DataModel. ListItems have not been retrieved yet.
     func getTemplateItems() -> [NSManagedObject] {
@@ -161,40 +190,40 @@ class TemplatesTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return templateListsArr.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listTemplateCell", for: indexPath) as! ListTemplateCell
-
+        
         // Configure the cell...
         
         var currTemplateList = templateListsArr[indexPath.row]
         
         cell.templateTitleLabel.text = currTemplateList.templateName
         
-
+        
         return cell
     }
     
-
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -202,13 +231,59 @@ class TemplatesTableViewController: UITableViewController {
             // Delete the row from the data source
             
             let removed = templateListsArr.remove(at: indexPath.row)
-                    
+            
+            let parentID = removed.templateID
             
             tableView.deleteRows(at: [indexPath], with: .fade)
             
             // TODO: remove the corresponding object from the DataModel of the app.
             
-           
+            // remove the main listTemplate object from the DataModel
+            
+            let templateFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TemplateListData")
+            
+            templateFetchRequest.predicate = NSPredicate(format: "templateID == %@", parentID)
+            
+            var templateItemToBeRemoved: [NSManagedObject]!
+            
+            do {
+                templateItemToBeRemoved = try self.managedObjectContext.fetch(templateFetchRequest)
+            } catch {
+                print("Fetching From DataModel Error: \(error)")
+            }
+            
+            for item in templateItemToBeRemoved {
+                
+                print("deletion loop:")
+                //printFoodItemDataObj(item)
+                managedObjectContext.delete(item)
+            }
+            
+            
+            // remove all the ListItems from the DataModel that are associated with that main ListTemplate as well.
+            
+            let listItemFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
+            
+            listItemFetchRequest.predicate = NSPredicate(format: "parentID == %@", parentID)
+            
+            var listItemToBeRemoved: [NSManagedObject]!
+            
+            do {
+                listItemToBeRemoved = try self.managedObjectContext.fetch(listItemFetchRequest)
+            } catch {
+                print("Fetching From DataModel Error: \(error)")
+            }
+            
+            for item in listItemToBeRemoved {
+                
+                print("deletion loop:")
+                //printFoodItemDataObj(item)
+                managedObjectContext.delete(item)
+            }
+            
+            // save the context so that the deletions are persistant.
+            appDelegate.saveContext()
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -237,28 +312,28 @@ class TemplatesTableViewController: UITableViewController {
         
         
         // create a segue to another view and initialize the view items.
-       
+        
     }
     
-
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     
     // MARK: - Navigation
-
+    
     
     @IBAction func unwindFromCreateTemplateView(sender: UIStoryboardSegue) {
         // this is where the templateList object from the previous view will be stored into the data in this view.
@@ -315,5 +390,5 @@ class TemplatesTableViewController: UITableViewController {
         
     }
     
-
+    
 }
