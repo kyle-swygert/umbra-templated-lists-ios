@@ -31,5 +31,13 @@ class ListTemplate {
         self.description = description
     }
     
+    // this initailizer is for creating an object from the DataModel items, so a new templateID is NOT going to be generated. 
+    init(templateName: String = "NewTemplate", listItems: [ListItem] = [], description: String = "default description", templateID: String = "uniqueID") {
+        self.templateName = templateName
+        self.templateID = templateID
+        self.listItems = listItems
+        self.description = description
+    }
+    
     
 }

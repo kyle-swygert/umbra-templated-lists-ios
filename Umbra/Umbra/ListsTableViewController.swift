@@ -20,6 +20,10 @@ class ListsTableViewController: UITableViewController {
         // make sure to cover the cases of the user selecting the list properly, or canceling the selection.
         
         
+        print("newListButtonTapped()")
+        
+        // 
+        
     }
     
 

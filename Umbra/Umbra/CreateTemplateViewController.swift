@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateTemplateViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    
+    var managedObjectContext: NSManagedObjectContext!
+    var appDelegate: AppDelegate!
+    
     
     
     var newTemplateList: ListTemplate = ListTemplate()
@@ -31,12 +38,13 @@ class CreateTemplateViewController: UIViewController, UITableViewDelegate, UITab
         
         
         
+        appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedObjectContext = appDelegate.persistentContainer.viewContext
         
         
         
-        // initialize the tableView here
         
-        //listItemsTableView.numberOfRows(inSection: 1)
+        
         
     }
     
@@ -109,11 +117,64 @@ class CreateTemplateViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         
+        storeTemplateIntoDataModel()
+        
         // segue back to the TemplatesTableViewController and add this new ListTemplate to that array and display it in the tableView.
         
         performSegue(withIdentifier: "unwindFromCreateTemplate", sender: nil)
         
     }
+    
+    
+    func storeTemplateIntoDataModel() {
+        
+        // add the items from this TemplateList object into the DataModel with CoreData for access in other parts of the app.
+        
+        let templateDataObj = NSEntityDescription.insertNewObject(forEntityName: "TemplateListData", into: self.managedObjectContext)
+        
+        let parentID = newTemplateList.templateID
+        
+        
+        // set the title / name
+        templateDataObj.setValue(newTemplateList.templateName, forKey: "templateName")
+        
+        // set the ID
+        templateDataObj.setValue(newTemplateList.templateID, forKey: "templateID")
+        
+        // set the description
+        templateDataObj.setValue(newTemplateList.description, forKey: "templateDescription")
+        
+        
+        // insert the items for the current newTemplateList into the DataModel.
+        
+        for item in newTemplateList.listItems {
+            // insert the current item into the DataModel.
+            
+            var currListItemDataObj = NSEntityDescription.insertNewObject(forEntityName: "ListItemData", into: self.managedObjectContext)
+            
+            // insert the id
+            currListItemDataObj.setValue(item.itemID, forKey: "itemID")
+            
+            // insert the item text
+            currListItemDataObj.setValue(item.itemText, forKey: "itemText")
+            
+            // insert the item parentID. Need to have a parent ID so we can figure out what ListItems belong to Which ListTemplates
+            currListItemDataObj.setValue(parentID, forKey: "parentID")
+            
+            // insert the isChecked value, should be always false for now...
+            currListItemDataObj.setValue(false, forKey: "isChecked")
+            
+            
+            
+        }
+        
+        
+        appDelegate.saveContext()
+        
+        
+    }
+    
+    
     
     @IBAction func newListItemButtonTapped(_ sender: UIButton) {
         

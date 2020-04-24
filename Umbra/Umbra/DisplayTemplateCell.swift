@@ -8,12 +8,11 @@
 
 import UIKit
 
+
+// This cell is the cell that is used to just display the contents of the template list. Nothing else but the strings in the cell are displayed. 
 class DisplayTemplateCell: UITableViewCell {
 
-    
-    
     @IBOutlet weak var displayCellLabel: UILabel!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

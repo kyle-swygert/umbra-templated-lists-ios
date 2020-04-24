@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class TemplatesTableViewController: UITableViewController {
 
     
     var templateListsArr: [ListTemplate] = []
+    
+    
+    var managedObjectContext: NSManagedObjectContext!
+    var appDelegate: AppDelegate!
+    
+    
+    
     
     @IBAction func newTemplateButtonTapped(_ sender: UIButton) {
         
@@ -38,6 +46,9 @@ class TemplatesTableViewController: UITableViewController {
         
         
         
+        appDelegate = UIApplication.shared.delegate as? AppDelegate
+        managedObjectContext = appDelegate.persistentContainer.viewContext
+        
         
         tableView.rowHeight = 55
         
@@ -58,8 +69,97 @@ class TemplatesTableViewController: UITableViewController {
         
         
         
+        
+        
+        // TODO: retrieve the templateLists from the DataModel and display them to the screen here.
+        var allTemplates = getTemplateItems()
+        
+        // for each item in the allTemplates list, get the ListItems for the specified parentID
+        
+        for temp in allTemplates {
+            
+            printTemplateDataObj(temp)
+            
+            let childrenItems = getListItemsForParentTemplate(temp)
+            
+            
+            print(childrenItems)
+            
+            // NOTE: currently temp holds the ListTemplate object data, and the childrenItems array holds all the ListItem objects in it.
+            // instantiate actual objects from these pieces of data, then add the whole ListTemplate to the templateListArr to display them on the app!
+            
+            for child in childrenItems {
+                // create a ListItem object from child and add it to the newly created ListTemplate object. 
+                
+                
+                
+            }
+            
+            
+            
+            
+        }
+        
+    }
+    
+    func printTemplateDataObj(_ template: NSManagedObject) {
+        
+        let name = template.value(forKey: "templateName") as? String
+        
+        print("Current Template Name: \(name!)")
+        
+        
     }
 
+    
+    // this function will retrieve all the ListTemplate objects from the DataModel. ListItems have not been retrieved yet.
+    func getTemplateItems() -> [NSManagedObject] {
+        
+        var allTemplates: [NSManagedObject] = []
+        
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "TemplateListData")
+        
+        do {
+            allTemplates = try self.managedObjectContext.fetch(fetchReq)
+        } catch {
+            print("getTemplateItems() error: \(error)")
+        }
+        
+        
+        return allTemplates
+    }
+    
+    
+    // this function will retrieve all the ListItems associated with the parent object that has the parentID
+    func getListItemsForParentTemplate(_ parentTemplate: NSManagedObject) -> [NSManagedObject] {
+        
+        let parentID = parentTemplate.value(forKey: "templateID") as? String
+        
+        print("getListItemsForParentTemplate()")
+        print("Current parentID: \(parentID!)")
+        
+        var allListItems: [NSManagedObject] = []
+        
+        // fetch the items that have the same parentID as the input parameter
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
+        fetchReq.predicate = NSPredicate(format: "parentID == %@", parentID!)
+        
+        do {
+            allListItems = try self.managedObjectContext.fetch(fetchReq)
+        } catch {
+            print("getListItemsForParentTemplate() error: \(error)")
+        }
+        
+        
+        return allListItems
+        
+        
+        
+        
+    }
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
