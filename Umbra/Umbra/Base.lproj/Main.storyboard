@@ -298,6 +298,7 @@
                                 <state key="normal" title="New List"/>
                                 <connections>
                                     <action selector="newListButtonTapped:" destination="pxc-vt-N67" eventType="touchUpInside" id="PLA-Wg-U7z"/>
+                                    <segue destination="XEm-yS-5ka" kind="show" identifier="fromListsToInstantiateListView" id="9nI-ka-KfF"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -307,6 +308,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVV-Th-tpB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2276" y="0.0"/>
+        </scene>
+        <!--Pick a List to Create-->
+        <scene sceneID="ShV-IG-eyb">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="XEm-yS-5ka" customClass="InstantiateUsableListViewController" customModule="Umbra" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="paF-CI-FmK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXR-Xm-8D4">
+                                <rect key="frame" x="0.0" y="78" width="375" height="216"/>
+                            </pickerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aAA-DT-nJL">
+                                <rect key="frame" x="5" y="299" width="365" height="363"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="displayTemplateCell" id="Rvp-4g-NuZ" customClass="DisplayTemplateCell" customModule="Umbra" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="365" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rvp-4g-NuZ" id="Ni6-Vb-sCa">
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypp-xg-8eK">
+                                                    <rect key="frame" x="20" y="16" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ypp-xg-8eK" secondAttribute="bottom" constant="5" id="0md-6O-Nbb"/>
+                                                <constraint firstItem="Ypp-xg-8eK" firstAttribute="leading" secondItem="Ni6-Vb-sCa" secondAttribute="leadingMargin" constant="5" id="MQD-kU-n8t"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ypp-xg-8eK" secondAttribute="trailing" constant="20" symbolic="YES" id="WFk-UP-YiT"/>
+                                                <constraint firstItem="Ypp-xg-8eK" firstAttribute="top" secondItem="Ni6-Vb-sCa" secondAttribute="topMargin" constant="5" id="o2r-f4-f2A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="displayCellLabel" destination="Ypp-xg-8eK" id="qVh-r2-CxO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="eXR-Xm-8D4" firstAttribute="leading" secondItem="S2t-3u-wyx" secondAttribute="leading" id="5Uc-XU-7cA"/>
+                            <constraint firstItem="eXR-Xm-8D4" firstAttribute="trailing" secondItem="S2t-3u-wyx" secondAttribute="trailing" id="I41-LI-U8Q"/>
+                            <constraint firstItem="S2t-3u-wyx" firstAttribute="trailing" secondItem="aAA-DT-nJL" secondAttribute="trailing" constant="5" id="NzI-8E-JXL"/>
+                            <constraint firstItem="aAA-DT-nJL" firstAttribute="leading" secondItem="S2t-3u-wyx" secondAttribute="leading" constant="5" id="QW5-bm-YdI"/>
+                            <constraint firstItem="S2t-3u-wyx" firstAttribute="bottom" secondItem="aAA-DT-nJL" secondAttribute="bottom" constant="5" id="aAx-sM-gmn"/>
+                            <constraint firstItem="aAA-DT-nJL" firstAttribute="top" secondItem="eXR-Xm-8D4" secondAttribute="bottom" constant="5" id="aCL-e8-Pfz"/>
+                            <constraint firstItem="eXR-Xm-8D4" firstAttribute="top" secondItem="S2t-3u-wyx" secondAttribute="top" id="yyE-5k-zVe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S2t-3u-wyx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pick a List to Create" prompt="Umbra" id="bHW-ao-wCF">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Bvc-2L-5NE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LUS-5A-RMe">
+                                <rect key="frame" x="276" y="41" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Accept"/>
+                                <connections>
+                                    <action selector="acceptButtonTapped:" destination="jve-qo-Gih" eventType="touchUpInside" id="77l-6O-N9P"/>
+                                    <segue destination="jve-qo-Gih" kind="unwind" unwindAction="unwindFromInstantiateListViewWithSender:" id="B85-N5-aQB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="currTemplateTableView" destination="aAA-DT-nJL" id="r92-gf-Pm9"/>
+                        <outlet property="templateListPicker" destination="eXR-Xm-8D4" id="7Nq-T9-mFt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W29-cR-RQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="jve-qo-Gih" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3334" y="0.0"/>
         </scene>
         <!--Settings-->
         <scene sceneID="giO-9X-tTK">
