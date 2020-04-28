@@ -3,6 +3,7 @@
     <entity name="ListItemData" representedClassName="ListItemData" syncable="YES" codeGenerationType="class">
         <attribute name="isChecked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="itemID" optional="YES" attributeType="String"/>
+        <attribute name="itemOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="itemText" optional="YES" attributeType="String"/>
         <attribute name="parentID" optional="YES" attributeType="String"/>
         <relationship name="isPartOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemplateListData" inverseName="has" inverseEntity="TemplateListData"/>
@@ -15,7 +16,7 @@
     </entity>
     <entity name="UsableListData" representedClassName="UsableListData" syncable="YES" codeGenerationType="class"/>
     <elements>
-        <element name="ListItemData" positionX="100.203125" positionY="239.65234375" width="128" height="118"/>
+        <element name="ListItemData" positionX="100.203125" positionY="239.65234375" width="128" height="28"/>
         <element name="TemplateListData" positionX="362.06640625" positionY="-21.453125" width="128" height="103"/>
         <element name="UsableListData" positionX="512.828125" positionY="286.3828125" width="128" height="43"/>
     </elements>

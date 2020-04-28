@@ -14,12 +14,7 @@ class TemplatesTableViewController: UITableViewController {
     
     var templateListsArr: [ListTemplate] = []
     
-    
-    var managedObjectContext: NSManagedObjectContext!
-    var appDelegate: AppDelegate!
-    
-    
-    
+    var util: DataStorageUtils = DataStorageUtils()
     
     @IBAction func newTemplateButtonTapped(_ sender: UIButton) {
         
@@ -46,9 +41,6 @@ class TemplatesTableViewController: UITableViewController {
         
         
         
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        managedObjectContext = appDelegate.persistentContainer.viewContext
-        
         
         tableView.rowHeight = 55
         
@@ -74,115 +66,8 @@ class TemplatesTableViewController: UITableViewController {
         */
         
         // TODO: retrieve the templateLists from the DataModel and display them to the screen here.
-        var allTemplates = getTemplateItems()
         
-        // for each item in the allTemplates list, get the ListItems for the specified parentID
-        
-        for temp in allTemplates {
-            
-            printTemplateDataObj(temp)
-            
-            var currList = templateData2TemplateObj(temp)
-            
-            let childrenItems = getListItemsForParentTemplate(temp)
-            
-            
-            print(childrenItems)
-            
-            // NOTE: currently temp holds the ListTemplate object data, and the childrenItems array holds all the ListItem objects in it.
-            // instantiate actual objects from these pieces of data, then add the whole ListTemplate to the templateListArr to display them on the app!
-            
-            for child in childrenItems {
-                // create a ListItem object from child and add it to the newly created ListTemplate object.
-                
-                var currChild = listItemData2ListItemObj(child)
-                
-                currList.listItems.append(currChild)
-                
-                
-            }
-            
-            // append the newly created list from the DataModel onto the array to populate the tableView.
-            templateListsArr.append(currList)
-            
-        }
-        
-    }
-    
-    func templateData2TemplateObj(_ dataObj: NSManagedObject) -> ListTemplate {
-        
-        let tempName = (dataObj.value(forKey: "templateName") as? String)!
-        let tempID = (dataObj.value(forKey: "templateID") as? String)!
-        let tempDesc = (dataObj.value(forKey: "templateDescription") as? String)!
-        
-        
-        return ListTemplate(templateName: tempName, description: tempDesc, listItems: [], templateID: tempID)
-        
-    }
-    
-    
-    // this function will create ListItems that are to be used in the Template View, so the boolean values of the isChecked members will always be set to false. This will be different when a usable list is being created though.
-    func listItemData2ListItemObj(_ dataObj: NSManagedObject) -> ListItem {
-        
-        let itemID = (dataObj.value(forKey: "itemID") as? String)!
-        let itemText = (dataObj.value(forKey: "itemText") as? String)!
-        
-        return ListItem(itemText: itemText, itemID: itemID)
-        
-    }
-    
-    func printTemplateDataObj(_ template: NSManagedObject) {
-        
-        let name = template.value(forKey: "templateName") as? String
-        
-        print("Current Template Name: \(name!)")
-        
-        
-    }
-    
-    
-    // this function will retrieve all the ListTemplate objects from the DataModel. ListItems have not been retrieved yet.
-    func getTemplateItems() -> [NSManagedObject] {
-        
-        var allTemplates: [NSManagedObject] = []
-        
-        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "TemplateListData")
-        
-        do {
-            allTemplates = try self.managedObjectContext.fetch(fetchReq)
-        } catch {
-            print("getTemplateItems() error: \(error)")
-        }
-        
-        
-        return allTemplates
-    }
-    
-    
-    // this function will retrieve all the ListItems associated with the parent object that has the parentID
-    func getListItemsForParentTemplate(_ parentTemplate: NSManagedObject) -> [NSManagedObject] {
-        
-        let parentID = parentTemplate.value(forKey: "templateID") as? String
-        
-        print("getListItemsForParentTemplate()")
-        print("Current parentID: \(parentID!)")
-        
-        var allListItems: [NSManagedObject] = []
-        
-        // fetch the items that have the same parentID as the input parameter
-        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
-        fetchReq.predicate = NSPredicate(format: "parentID == %@", parentID!)
-        
-        do {
-            allListItems = try self.managedObjectContext.fetch(fetchReq)
-        } catch {
-            print("getListItemsForParentTemplate() error: \(error)")
-        }
-        
-        
-        return allListItems
-        
-        
+        templateListsArr = util.loadAllTemplatesFromDataModel()
         
         
     }
@@ -247,7 +132,7 @@ class TemplatesTableViewController: UITableViewController {
             var templateItemToBeRemoved: [NSManagedObject]!
             
             do {
-                templateItemToBeRemoved = try self.managedObjectContext.fetch(templateFetchRequest)
+                templateItemToBeRemoved = try util.managedObjectContext.fetch(templateFetchRequest)
             } catch {
                 print("Fetching From DataModel Error: \(error)")
             }
@@ -256,7 +141,7 @@ class TemplatesTableViewController: UITableViewController {
                 
                 print("deletion loop:")
                 //printFoodItemDataObj(item)
-                managedObjectContext.delete(item)
+                util.managedObjectContext.delete(item)
             }
             
             
@@ -269,7 +154,7 @@ class TemplatesTableViewController: UITableViewController {
             var listItemToBeRemoved: [NSManagedObject]!
             
             do {
-                listItemToBeRemoved = try self.managedObjectContext.fetch(listItemFetchRequest)
+                listItemToBeRemoved = try util.managedObjectContext.fetch(listItemFetchRequest)
             } catch {
                 print("Fetching From DataModel Error: \(error)")
             }
@@ -278,11 +163,11 @@ class TemplatesTableViewController: UITableViewController {
                 
                 print("deletion loop:")
                 //printFoodItemDataObj(item)
-                managedObjectContext.delete(item)
+                util.managedObjectContext.delete(item)
             }
             
             // save the context so that the deletions are persistant.
-            appDelegate.saveContext()
+            util.appDelegate.saveContext()
             
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
