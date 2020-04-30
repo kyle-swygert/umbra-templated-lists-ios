@@ -1,0 +1,27 @@
+
+Todo Whole App:
+  ☐ Clean up comments and code for final version
+  ☐ test the app for edge cases
+    ☐ trying to create a list when there are no templates
+    ☐ don't allow user to try to create template without any list items
+      ☐ display an alert to the user "you have not entered any list items. Would you like to add some items or delete the list? (Add items) (Delete List)"
+  ☐ when all parts of the app function properly, try to implement the FoldingCells like I originally said that I would do...
+  ☐ remove TODO and NOTE comments from the app
+  ☐ comment the whole app properly to explain what is going on in the app so I might come back to it and update it in the future. 
+
+
+CreateViewTemplateViewController:
+  ☐ when the return button is tapped, make sure that the keyboard disappears
+  ☐ try to make the whole view scrollable so that when more listItems are added to the list, the user can scroll to the bottom to see what they are typing. Just make sure that the keyboard is not blocking the display at all. 
+
+
+ListTableViewController:
+  ☐ store the instantiated UsableLists into the DataModel
+    ☐ might have to add new entities to the DataModel to store the individual isChecked values of the ListItems, or I could just get the strings from the existing ListItem entities, then add the isChecked boolean to that instance. Definitely still need to think about this part more. 
+
+SettingsTableViewController:
+  ☐ implement the details of the app
+    ☐ version, github link, any other pieces of information
+  ☐ possibly add setting for changing highlight colors in the app
+    ☐ allow user to select from light blue, purple, green, red, pink, orange
+    ☐ change the color of the buttons, tabBar selector, and navigation bar. 

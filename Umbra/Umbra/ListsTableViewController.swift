@@ -42,6 +42,8 @@ class ListsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        tableView.rowHeight = 55
+        
     }
 
     // MARK: - Table view data source
@@ -75,17 +77,24 @@ class ListsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            
+            
+            var toRemove = currUsableListArr.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
