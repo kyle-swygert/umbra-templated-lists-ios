@@ -97,83 +97,26 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         //currTemplateTableView.reloadData()
         
         
-        // set the new selected picker item then populate the table.
+        
         
         currTemplateTableView.beginUpdates()
         
         
-        // insert the rows into the table here.
+        // delete all the current rows in the table
         currTemplateTableView.deleteRows(at: (0..<count).map({ (i) in IndexPath(row: i, section: 0)}), with: .fade)
         
-        
+        // set the new selected picker item then populate the table.
         currSelectedTemplate = allTemplates[row]
         
+        // insert the number of rows that correspond to the new ListTemplate that is to be displayed. 
         let newCount = currSelectedTemplate.listItems.count + 1
-        
         currTemplateTableView.insertRows(at: (0..<newCount).map({ (i) in IndexPath(row: i, section: 0)}), with: .fade)
         
         
         currTemplateTableView.endUpdates()
         
-        
-        
-        
+        // reload the tableView so that the new rows are loaded into the app view.
         currTemplateTableView.reloadData()
-        
-        
-        
-        
-//
-//
-//        var currTemplateIndex = templateListPicker.selectedRow(inComponent: 0)
-//
-//        var currListTemplate = allTemplates[currTemplateIndex]
-//
-//        print(currListTemplate.templateName)
-//
-//
-//        // clear the tableView contents.
-//        //self.currTemplateTableView
-//
-//
-//        currTemplateTableView.beginUpdates()
-//
-//        currSelectedTemplate = allTemplates[currTemplateIndex]
-//
-//        //currTemplateTableView.insertRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
-//
-//        var row = 0
-//
-//
-//        // loop to insert the rows into the tableView.
-//        for item in currSelectedTemplate.listItems {
-//
-//            var currIndex = IndexPath(row: row, section: 0)
-//
-//            currTemplateTableView.insertRows(at: [currIndex], with: .fade)
-//
-//
-//            row += 1
-//        }
-//
-//
-//
-//        // remove all the previous rows.
-//
-//        // add the rows for the currently selected ListTemplate.
-//
-//
-//
-//        currTemplateTableView.endUpdates()
-//
-//
-//        currTemplateTableView.reloadData()
-//
-//        // display all the currentlye selected ListTemplate items.
-//
-//
-        
-        
         
         
     }

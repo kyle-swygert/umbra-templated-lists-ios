@@ -14,6 +14,15 @@ import UIKit
 
 class UsableListCell: UITableViewCell {
 
+    
+    // label to display the string to the cell
+    
+    @IBOutlet weak var displayLabel: UILabel!
+    
+    // custom checkbox class to display the value of isChecked variable. 
+    @IBOutlet weak var checkedImageView: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

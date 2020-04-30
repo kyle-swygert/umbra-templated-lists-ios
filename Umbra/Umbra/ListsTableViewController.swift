@@ -48,23 +48,24 @@ class ListsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return currUsableListArr.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "displayUsableCell", for: indexPath) as! DisplayTemplateCell
 
-        // Configure the cell...
-
+        
+        cell.displayCellLabel.text = currUsableListArr[indexPath.row].listName
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -114,46 +115,7 @@ class ListsTableViewController: UITableViewController {
             
             // load all the ListTemplates into memory from the DataModel, then seld that data to the destination view.
             
-            var templateListsArr: [ListTemplate] = []
-            
-            
-            // TODO: retrieve the templateLists from the DataModel and display them to the screen here.
-            var allTemplates = util.getTemplateItems()
-            
-            // for each item in the allTemplates list, get the ListItems for the specified parentID
-            
-            for temp in allTemplates {
-                
-                util.printTemplateDataObj(temp)
-                
-                var currList = util.templateData2TemplateObj(temp)
-                
-                let childrenItems = util.getListItemsForParentTemplate(temp)
-                
-                
-                print(childrenItems)
-                
-                // NOTE: currently temp holds the ListTemplate object data, and the childrenItems array holds all the ListItem objects in it.
-                // instantiate actual objects from these pieces of data, then add the whole ListTemplate to the templateListArr to display them on the app!
-                
-                for child in childrenItems {
-                    // create a ListItem object from child and add it to the newly created ListTemplate object.
-                    
-                    var currChild = util.listItemData2ListItemObj(child)
-                    
-                    currList.listItems.append(currChild)
-                    
-                    
-                }
-                
-                // append the newly created list from the DataModel onto the array to populate the tableView.
-                
-                currList.listItems = currList.listItems.sorted(by: { $0.itemOrder <= $1.itemOrder })
-                
-                templateListsArr.append(currList)
-                
-            }
-            
+            let templateListsArr: [ListTemplate] = util.loadAllTemplatesFromDataModel()
             
             
             // prepare for the segue by setting the destination view's data to the data that was just retrieved from the DataModel.
@@ -169,6 +131,21 @@ class ListsTableViewController: UITableViewController {
            
         } // end of block for first segue block.
         
+        else if (segue.identifier == "fromUsableListsToSingleList") {
+            // the app is going to transition to the view to display the usable List with all of it's check boxes.
+            
+            let destVC = segue.destination as! DisplayUsableListTableViewController
+            
+            let currIndexPath = self.tableView.indexPathForSelectedRow
+            
+            destVC.selectedUsableList = currUsableListArr[currIndexPath!.row]
+            
+            
+            
+            
+            
+            
+        }
         
         
         
@@ -205,8 +182,4 @@ class ListsTableViewController: UITableViewController {
         
     }
     
-    
-    
-    
-
 } // end of class

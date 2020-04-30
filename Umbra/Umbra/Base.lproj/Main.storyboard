@@ -220,7 +220,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSu-mG-i3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="64r-Tg-Kcg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3335.1999999999998" y="-1646.6266866566718"/>
+            <point key="canvasLocation" x="3334" y="-2170"/>
         </scene>
         <!--Display Template Table View Controller-->
         <scene sceneID="EqC-7i-Ao7">
@@ -265,7 +265,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssb-CF-s8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3335" y="-913"/>
+            <point key="canvasLocation" x="3334" y="-1302"/>
         </scene>
         <!--Lists-->
         <scene sceneID="GL6-t3-kZe">
@@ -276,13 +276,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="usableListCell" id="tc9-ib-rMN" customClass="UsableListCell" customModule="Umbra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="displayUsableCell" id="tc9-ib-rMN" customClass="DisplayTemplateCell" customModule="Umbra" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc9-ib-rMN" id="DGB-lN-4YJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxi-km-InF">
+                                            <rect key="frame" x="21" y="16" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fxi-km-InF" secondAttribute="trailing" constant="20" symbolic="YES" id="GMw-Rk-tpY"/>
+                                        <constraint firstItem="fxi-km-InF" firstAttribute="top" secondItem="DGB-lN-4YJ" secondAttribute="topMargin" constant="5" id="aNA-nS-Q2J"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="fxi-km-InF" secondAttribute="bottom" constant="5" id="kh6-O2-foB"/>
+                                        <constraint firstItem="fxi-km-InF" firstAttribute="leading" secondItem="DGB-lN-4YJ" secondAttribute="leadingMargin" constant="5" id="qYK-OK-ZnB"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="displayCellLabel" destination="fxi-km-InF" id="Gf4-mk-fXR"/>
+                                    <segue destination="uKG-xq-2u7" kind="presentation" identifier="fromUsableListsToSingleList" id="E7B-ZM-RFd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -293,7 +311,7 @@
                     <navigationItem key="navigationItem" title="Lists" prompt="Umbra" id="ivP-pd-UUB">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="gsD-Lr-JJC">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HH0-TW-WOU">
-                                <rect key="frame" x="276" y="41" width="83" height="30"/>
+                                <rect key="frame" x="299" y="41" width="60" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="New List"/>
                                 <connections>
@@ -308,6 +326,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVV-Th-tpB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2276" y="0.0"/>
+        </scene>
+        <!--Display Usable List Table View Controller-->
+        <scene sceneID="JNQ-TN-ebG">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="uKG-xq-2u7" customClass="DisplayUsableListTableViewController" customModule="Umbra" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Yn-OK-dhG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="usableListCell" id="q2a-bX-uBk" customClass="UsableListCell" customModule="Umbra" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q2a-bX-uBk" id="b5f-iU-VAI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwR-IB-B9k">
+                                            <rect key="frame" x="21" y="16" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="apk-dh-FaO">
+                                            <rect key="frame" x="329" y="12" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="czo-YL-aSV"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="apk-dh-FaO" secondAttribute="bottom" constant="11" id="3gJ-wQ-PuZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="apk-dh-FaO" secondAttribute="trailing" constant="16" id="F7Q-yj-Db6"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JwR-IB-B9k" secondAttribute="trailing" constant="20" symbolic="YES" id="FRY-hl-Ien"/>
+                                        <constraint firstItem="JwR-IB-B9k" firstAttribute="leading" secondItem="b5f-iU-VAI" secondAttribute="leadingMargin" constant="5" id="Q2d-qN-2mA"/>
+                                        <constraint firstItem="JwR-IB-B9k" firstAttribute="top" secondItem="b5f-iU-VAI" secondAttribute="topMargin" constant="5" id="b25-CW-GLa"/>
+                                        <constraint firstItem="apk-dh-FaO" firstAttribute="top" secondItem="b5f-iU-VAI" secondAttribute="top" constant="12" id="eX0-wx-evT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="JwR-IB-B9k" secondAttribute="bottom" constant="5" id="rG6-CA-ss0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkedImageView" destination="apk-dh-FaO" id="Dhn-qy-7SU"/>
+                                    <outlet property="displayLabel" destination="JwR-IB-B9k" id="DLj-Jg-Cky"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uKG-xq-2u7" id="7dI-or-6OU"/>
+                            <outlet property="delegate" destination="uKG-xq-2u7" id="Y6q-wM-2pt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="e64-Pf-9x7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F2N-Kk-0rw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3349" y="199"/>
         </scene>
         <!--Pick a List to Create-->
         <scene sceneID="ShV-IG-eyb">
@@ -385,7 +459,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W29-cR-RQh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="jve-qo-Gih" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3334" y="0.0"/>
+            <point key="canvasLocation" x="3334" y="-525"/>
         </scene>
         <!--Settings-->
         <scene sceneID="giO-9X-tTK">
