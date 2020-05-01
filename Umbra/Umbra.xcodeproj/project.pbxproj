@@ -110,7 +110,6 @@
 				249E5B692412C8A400E0406E /* LaunchScreen.storyboard */,
 				249E5B6C2412C8A400E0406E /* Info.plist */,
 				244040C52440FE8500FF0A11 /* Umbra.xcdatamodeld */,
-				24BDBA75245B312700EBF233 /* JotaroProfile.png */,
 				241140D7244670BC00339B5A /* DisplayTemplateTableViewController.swift */,
 				241140D92446710700339B5A /* DisplayTemplateCell.swift */,
 				241140DB2446982800339B5A /* CreateTemplateViewController.swift */,
@@ -119,6 +118,7 @@
 				24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */,
 				24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */,
 				24BDBA71245A123300EBF233 /* CheckBox.swift */,
+				24BDBA75245B312700EBF233 /* JotaroProfile.png */,
 				24BDBA73245A93A400EBF233 /* goblin.jpeg */,
 			);
 			path = Umbra;

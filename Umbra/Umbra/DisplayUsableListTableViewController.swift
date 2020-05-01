@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class DisplayUsableListTableViewController: UITableViewController {
 
+    
+    var util: DataStorageUtils = DataStorageUtils()
     
     var selectedUsableList: UsableList!
     
@@ -27,6 +30,16 @@ class DisplayUsableListTableViewController: UITableViewController {
         checkBoxImage = UIImage(named: "checkmark.square.fill")
         
         
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("the usable list view did disappear")
+        
+        // store the currently selected usable list into the DataModel
+        // will NOT be storing a new entity in the DataModel, only updating the values for the originally stored UsableList.
+        
+        util.updateUsableListDataModelObjects(toUpdate: selectedUsableList)
         
     }
 

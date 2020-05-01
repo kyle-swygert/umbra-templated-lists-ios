@@ -44,6 +44,14 @@ class ListsTableViewController: UITableViewController {
         
         tableView.rowHeight = 55
         
+        
+        currUsableListArr = util.loadAllUsableListsFromDataModel()
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("The view did appear")
     }
 
     // MARK: - Table view data source
@@ -162,6 +170,17 @@ class ListsTableViewController: UITableViewController {
     } // end of prepare()
     
     
+    @IBAction func unwindFromDisplayUsableList(sender: UIStoryboardSegue) {
+        
+        print("unwindFromDisplayUsableList()")
+        
+        // this is the function that should store all the lists back into the DataModel with the updated bool values for the ListItems.
+        // I might want to just store the previously displayed UsableList so that the app only stores the things that were just changed.
+        
+        
+        
+    }
+    
     
     @IBAction func unwindFromInstantiateListView(sender: UIStoryboardSegue) {
         
@@ -180,6 +199,9 @@ class ListsTableViewController: UITableViewController {
         
         var newUsableList = UsableList(listTemplate: prevVC.currSelectedTemplate)
         
+        
+        // store the newly instantiated UsableList into the DataModel for use later
+        util.storeUsableListIntoDataModel(toStore: newUsableList)
         
         currUsableListArr.append(newUsableList)
         

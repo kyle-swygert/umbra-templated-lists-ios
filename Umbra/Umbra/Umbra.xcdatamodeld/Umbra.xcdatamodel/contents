@@ -14,10 +14,16 @@
         <attribute name="templateName" optional="YES" attributeType="String"/>
         <relationship name="has" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListItemData" inverseName="isPartOf" inverseEntity="ListItemData"/>
     </entity>
-    <entity name="UsableListData" representedClassName="UsableListData" syncable="YES" codeGenerationType="class"/>
+    <entity name="UsableListData" representedClassName="UsableListData" syncable="YES" codeGenerationType="class">
+        <attribute name="parentTemplateID" optional="YES" attributeType="String"/>
+        <attribute name="usableDescription" optional="YES" attributeType="String"/>
+        <attribute name="usableID" optional="YES" attributeType="String"/>
+        <attribute name="usableName" optional="YES" attributeType="String"/>
+        <relationship name="has" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListItemData"/>
+    </entity>
     <elements>
-        <element name="ListItemData" positionX="100.203125" positionY="239.65234375" width="128" height="28"/>
+        <element name="ListItemData" positionX="-2.54296875" positionY="171.37109375" width="128" height="28"/>
         <element name="TemplateListData" positionX="362.06640625" positionY="-21.453125" width="128" height="103"/>
-        <element name="UsableListData" positionX="512.828125" positionY="286.3828125" width="128" height="43"/>
+        <element name="UsableListData" positionX="512.828125" positionY="286.3828125" width="128" height="118"/>
     </elements>
 </model>

@@ -15,6 +15,10 @@ class ListItem {
     var isChecked: Bool
     var itemOrder: Int  = 0 // this represents the number of item that it is in the list. This is to preserve the order of the items when they are loaded in from the DataModel. Initialize this to 0 here, but when the object is created the correct number is to be stored into the object. 
     
+    
+    // TODO: reduce code redundancy with default parameters for these constructors. 
+    
+    
     init(itemText: String, isChecked: Bool) {
         self.itemText = itemText
         self.itemID = UUID().uuidString // randomly generated string
@@ -55,6 +59,14 @@ class ListItem {
         self.itemText = itemText
         self.itemID = itemID
         self.isChecked = isChecked
+    }
+    
+    
+    init(itemText: String, itemID: String, isChecked: Bool, itemOrder: Int) {
+        self.itemText = itemText
+        self.itemID = itemID
+        self.isChecked = isChecked
+        self.itemOrder = itemOrder
     }
     
     

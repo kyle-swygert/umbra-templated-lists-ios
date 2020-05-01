@@ -8,6 +8,8 @@ Todo Whole App:
   ☐ when all parts of the app function properly, try to implement the FoldingCells like I originally said that I would do...
   ☐ remove TODO and NOTE comments from the app
   ☐ comment the whole app properly to explain what is going on in the app so I might come back to it and update it in the future. 
+  ☐ remove JotaroProfile.png and goblin.jpeg from project and Git
+  ☐ Update the README.md file to explain how to use the app when turning in the project, also for when the full project is released on GitHub so users know how to use the app. 
 
 
 CreateViewTemplateViewController:

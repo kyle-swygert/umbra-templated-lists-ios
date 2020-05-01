@@ -18,6 +18,9 @@ class DataStorageUtils {
     var appDelegate: AppDelegate!
     
     
+    // TODO: add fetch requests into the DataModel to clean up this class just a bit.
+    
+    
     
     init() {
         
@@ -27,6 +30,7 @@ class DataStorageUtils {
         
     }
     
+    // MARK: - ListTemplate Storage
     
     func loadAllTemplatesFromDataModel() -> [ListTemplate] {
         
@@ -200,6 +204,162 @@ class DataStorageUtils {
         
         
         appDelegate.saveContext()
+        
+        
+    }
+    
+    
+    // MARK: - UsableList storage
+    
+    
+    func storeUsableListIntoDataModel(toStore: UsableList) {
+        
+        // this function will store the Usable list into the DataModel the first time that it is intantiated in the app.
+        
+        // this function will NOT be used to update the values of the
+        
+        
+        // when storing UsableList items in this function, make sure that the parentID for the ListItemData objects is the ID string for the UsableList itself, not the ListTemplate that the UsableList was created from.
+        
+        
+        let usableDataObj = NSEntityDescription.insertNewObject(forEntityName: "UsableListData", into: self.managedObjectContext)
+        
+        let parentID = toStore.listID
+        
+        // setting all the attributes for the UsableListData object in the DataModel
+        usableDataObj.setValue(toStore.listName, forKey: "usableName")
+        usableDataObj.setValue(toStore.description, forKey: "usableDescription")
+        usableDataObj.setValue(toStore.listID, forKey: "usableID")
+        usableDataObj.setValue(toStore.templateID, forKey: "parentTemplateID")
+        
+        
+        
+        for item in toStore.listItems {
+            
+            let currListItemDataObj = NSEntityDescription.insertNewObject(forEntityName: "ListItemData", into: self.managedObjectContext)
+            
+            // insert the id
+            currListItemDataObj.setValue(item.itemID, forKey: "itemID")
+            
+            // insert the item text
+            currListItemDataObj.setValue(item.itemText, forKey: "itemText")
+            
+            // insert the item parentID. Need to have a parent ID so we can figure out what ListItems belong to Which ListTemplates
+            currListItemDataObj.setValue(parentID, forKey: "parentID")
+            
+            currListItemDataObj.setValue(item.isChecked, forKey: "isChecked")
+            
+            currListItemDataObj.setValue(item.itemOrder, forKey: "itemOrder")
+            
+        }
+        
+        
+        appDelegate.saveContext()
+        
+    }
+    
+    func getUsableListItems() -> [NSManagedObject] {
+        
+        // this function will retrieve all the UsableList objects stored in the DataModel
+        
+        var allUsableLists: [NSManagedObject] = []
+        
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "UsableListData")
+        
+        do {
+            allUsableLists = try self.managedObjectContext.fetch(fetchReq)
+        } catch {
+            print("getTemplateItems() error: \(error)")
+        }
+        
+        return allUsableLists
+    }
+    
+    
+    func usableData2UsableObj(_ dataObj: NSManagedObject) -> UsableList {
+        
+        // this function will create an instance of the
+        
+        let tempName = (dataObj.value(forKey: "usableName") as? String)!
+        let tempID = (dataObj.value(forKey: "usableID") as? String)!
+        let tempDesc = (dataObj.value(forKey: "usableDescription") as? String)!
+        let tempParentID = (dataObj.value(forKey: "parentTemplateID") as? String)!
+        
+        
+        return UsableList(listName: tempName, listID: tempID, description: tempDesc, parentTemplateID: tempParentID)
+    }
+    
+    func getListItemsForParentUsableList(_ parentTemplate: NSManagedObject) -> [NSManagedObject] {
+        
+        let parentID = parentTemplate.value(forKey: "usableID") as? String
+        
+        print("getListItemsForParentUsableList()")
+        print("Current parentID: \(parentID!)")
+        
+        var allListItems: [NSManagedObject] = []
+        
+        // fetch the items that have the same parentID as the input parameter
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
+        fetchReq.predicate = NSPredicate(format: "parentID == %@", parentID!)
+        
+        do {
+            allListItems = try self.managedObjectContext.fetch(fetchReq)
+        } catch {
+            print("getListItemsForParentTemplate() error: \(error)")
+        }
+        
+        
+        return allListItems
+        
+        
+        
+        
+    }
+    
+    func loadAllUsableListsFromDataModel() -> [UsableList] {
+        
+        var usableListsArr: [UsableList] = []
+        
+        var allUsableObj = getUsableListItems()
+        
+        
+        for temp in allUsableObj {
+            
+            var currUsable = usableData2UsableObj(temp)
+            
+            let childrenItems = getListItemsForParentUsableList(temp)
+            
+            
+            for child in childrenItems {
+                
+                var currChild = listItemData2ListItemObj(child)
+                
+                currUsable.listItems.append(currChild)
+                
+                
+            }
+            
+            currUsable.listItems = currUsable.listItems.sorted(by: { $0.itemOrder <= $1.itemOrder })
+            
+            usableListsArr.append(currUsable)
+            
+            
+        }
+        
+        
+        return usableListsArr
+        
+    }
+    
+    
+    func updateUsableListDataModelObjects(toUpdate: UsableList) {
+        
+        print("updating the listItems for the list: \(toUpdate.listName) \(toUpdate.listID)")
+        
+        
+        print("NOT YET IMPLEMENTED!!!")
+        
+        
         
         
     }
