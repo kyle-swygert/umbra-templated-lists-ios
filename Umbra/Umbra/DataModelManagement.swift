@@ -99,7 +99,24 @@ class DataStorageUtils {
         let itemText = (dataObj.value(forKey: "itemText") as? String)!
         let itemOrder = (dataObj.value(forKey: "itemOrder") as? Int)!
         
-        return ListItem(itemText: itemText, itemID: itemID, itemOrder: itemOrder)
+        var isChecked = (dataObj.value(forKey: "isChecked") as? Bool)
+        
+        
+        
+        if (isChecked == nil) {
+            // there is some error where when a UsableList List Item is being retrieved, the isChecked value seemed to always be nil. This might be from me not setting the value correctly in the dataNodel before, and running the app with this if statement once should fix it i believe...
+            
+            isChecked = false
+            
+        }
+        
+        
+        
+        //return ListItem(itemText: itemText, itemID: itemID, itemOrder: itemOrder)
+        
+        
+        return ListItem(itemText: itemText, itemID: itemID, isChecked: isChecked!, itemOrder: itemOrder)
+        
         
     }
     
@@ -251,6 +268,8 @@ class DataStorageUtils {
             
             currListItemDataObj.setValue(item.itemOrder, forKey: "itemOrder")
             
+            appDelegate.saveContext()
+            
         }
         
         
@@ -351,17 +370,87 @@ class DataStorageUtils {
         
     }
     
+    func getUsableListDataObj(toGet: UsableList) -> NSManagedObject {
+        
+        // this function will query the DataModel to get the Data Obj that is associated with the UsableList object that is given as input.
+        
+        
+        var allUsableLists: [NSManagedObject] = []
+        
+        let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "UsableListData")
+        
+        fetchReq.predicate = NSPredicate(format: "usableID == %@", toGet.listID)
+        
+        
+        do {
+            allUsableLists = try self.managedObjectContext.fetch(fetchReq)
+        } catch {
+            print("getTemplateItems() error: \(error)")
+        }
+        
+        // return the first item in the array, beacause there should only be one item in the list.
+        return allUsableLists[0]
+        
+        
+        
+    }
+    
     
     func updateUsableListDataModelObjects(toUpdate: UsableList) {
         
         print("updating the listItems for the list: \(toUpdate.listName) \(toUpdate.listID)")
         
         
-        print("NOT YET IMPLEMENTED!!!")
+        //print("NOT YET IMPLEMENTED!!!")
+
+        // query the DataModel for the ListItems with the listID from the UsableList.
         
         
+        // get the UsableList DataModel object, then we can use the getListItemsForParentUsableList() function to get the ListItems associated with the specific usableList
+        
+        var usableDataObj = getUsableListDataObj(toGet: toUpdate)
+        
+        
+        var usableListItems = getListItemsForParentUsableList(usableDataObj)
+        
+        // iterate through the listItems in the UsableList and set the DataModel objects to the same isChecked value, then save the contex with the updated ListItems in the DataModel.
+        
+        
+        for item in usableListItems {
+            // store the new values in each of the ListItems into the DataModel.
+            
+            
+            // get the ListItem object that is associated with teh current item
+            
+            var tempListItem = toUpdate.listItems.first(where: { $0.itemID == item.value(forKey: "itemID") as! String })
+            
+            
+            
+            // Should only have to set the value for the isChecked value in the ListItem Data obj
+            
+            item.setValue(tempListItem?.isChecked, forKey: "isChecked")
+            
+            appDelegate.saveContext()
+            
+            
+        }
+        
+        
+        // save the new upates to teh dataModel
+        appDelegate.saveContext()
         
         
     }
+    
+    
+    // TODO: add functions to remove DataModel objects from the DataModel. This will help clean up the other classes and functions.
+    
+    // deleteListItemFromDataModel(toDelete: ListItem) would i need to pass in the parent id as well? I think I would
+    
+    // deleteUsableListFromDataModel(toDelete: UsableList)
+    
+    // deleteTemplateListFromDataModel(toDelete: ListTemplate)
+    
+    
     
 }

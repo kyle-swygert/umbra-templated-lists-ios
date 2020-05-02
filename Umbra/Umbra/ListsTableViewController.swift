@@ -94,8 +94,60 @@ class ListsTableViewController: UITableViewController {
             
             var toRemove = currUsableListArr.remove(at: indexPath.row)
             
+            let parentID = toRemove.listID
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
             
+            
+            
+            // TODO: remove the UsableList and its ListItems from the DataModel
+            // use the TemplatesTableViewController as a basis for doing this. 
+            
+            
+            let usableFetchReq = NSFetchRequest<NSManagedObject>(entityName: "UsableListData")
+            
+            usableFetchReq.predicate = NSPredicate(format: "usableID == %@", parentID)
+            
+            var usableItemToBeRemove: [NSManagedObject]!
+            
+            do {
+                usableItemToBeRemove = try util.managedObjectContext.fetch(usableFetchReq)
+            } catch {
+                print("Fetching From DataModel Error: \(error)")
+            }
+            
+            
+            for item in usableItemToBeRemove {
+                
+                print("deleting usableList")
+                
+                util.managedObjectContext.delete(item)
+                
+            }
+            
+            // delete the corresponding ListItems
+            let listItemFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
+            
+            listItemFetchRequest.predicate = NSPredicate(format: "parentID == %@", parentID)
+            
+            var listItemToBeRemoved: [NSManagedObject]!
+            
+            do {
+                listItemToBeRemoved = try util.managedObjectContext.fetch(listItemFetchRequest)
+            } catch {
+                print("Fetching From DataModel Error: \(error)")
+            }
+            
+            for item in listItemToBeRemoved {
+                
+                print("deletion loop:")
+                //printFoodItemDataObj(item)
+                util.managedObjectContext.delete(item)
+            }
+            
+            // save the context so that the deletions are persistant.
+            util.appDelegate.saveContext()
+
             
             
         } else if editingStyle == .insert {
@@ -158,7 +210,7 @@ class ListsTableViewController: UITableViewController {
             destVC.selectedUsableList = currUsableListArr[currIndexPath!.row]
             
             
-            
+            print("")
             
             
             
