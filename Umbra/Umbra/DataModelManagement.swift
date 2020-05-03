@@ -442,14 +442,107 @@ class DataStorageUtils {
         
     }
     
+    // MARK: - Deletion from DataModel
+   
+    func deleteListItemsFromDataModel(parentID: String) {
+        
+        // delete the corresponding ListItems that have the same parentID
+        let listItemFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
+
+        listItemFetchRequest.predicate = NSPredicate(format: "parentID == %@", parentID)
+
+        var listItemToBeRemoved: [NSManagedObject]!
+
+        do {
+            listItemToBeRemoved = try managedObjectContext.fetch(listItemFetchRequest)
+        } catch {
+            print("Fetching From DataModel Error: \(error)")
+        }
+
+        for item in listItemToBeRemoved {
+
+            print("deletion loop:")
+            //printFoodItemDataObj(item)
+            managedObjectContext.delete(item)
+        }
+
+        // save the context so that the deletions are persistant.
+        appDelegate.saveContext()
+        
+        
+    }
     
-    // TODO: add functions to remove DataModel objects from the DataModel. This will help clean up the other classes and functions.
     
-    // deleteListItemFromDataModel(toDelete: ListItem) would i need to pass in the parent id as well? I think I would
+    func deleteUsableListFromDataModel(toDelete: UsableList) {
+        // this function will remove the UsableList, as well as all of its ListItems from the DataModel
+        
+        let parentID = toDelete.listID
+        
+        let usableFetchReq = NSFetchRequest<NSManagedObject>(entityName: "UsableListData")
+        
+        usableFetchReq.predicate = NSPredicate(format: "usableID == %@", parentID)
+        
+        var usableItemToBeRemove: [NSManagedObject]!
+        
+        do {
+            usableItemToBeRemove = try managedObjectContext.fetch(usableFetchReq)
+        } catch {
+            print("Fetching From DataModel Error: \(error)")
+        }
+        
+        
+        for item in usableItemToBeRemove {
+            
+            print("deleting usableList")
+            
+            managedObjectContext.delete(item)
+            
+        }
+        
+        deleteListItemsFromDataModel(parentID: parentID)
+        
+
+        // save the context so that the deletions are persistant.
+        appDelegate.saveContext()
+        
+    }
     
-    // deleteUsableListFromDataModel(toDelete: UsableList)
-    
-    // deleteTemplateListFromDataModel(toDelete: ListTemplate)
+    func deleteTemplateListFromDataModel(toDelete: ListTemplate) {
+        // this function will remove the ListTemplate, as well as all of its ListItems from the DataModel
+        
+        let parentID = toDelete.templateID
+        
+        // remove the main listTemplate object from the DataModel
+        
+        let templateFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TemplateListData")
+        
+        templateFetchRequest.predicate = NSPredicate(format: "templateID == %@", parentID)
+        
+        var templateItemToBeRemoved: [NSManagedObject]!
+        
+        do {
+            templateItemToBeRemoved = try managedObjectContext.fetch(templateFetchRequest)
+        } catch {
+            print("Fetching From DataModel Error: \(error)")
+        }
+        
+        for item in templateItemToBeRemoved {
+            
+            print("deletion loop:")
+            //printFoodItemDataObj(item)
+            managedObjectContext.delete(item)
+        }
+        
+        
+        // remove all the ListItems from the DataModel that are associated with that main ListTemplate as well.
+        
+        deleteListItemsFromDataModel(parentID: parentID)
+        
+        // save the context so that the deletions are persistant.
+        appDelegate.saveContext()
+        
+        
+    }
     
     
     

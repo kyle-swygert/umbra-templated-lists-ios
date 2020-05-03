@@ -44,29 +44,6 @@ class TemplatesTableViewController: UITableViewController {
         
         tableView.rowHeight = 55
         
-        
-        // NOTE: I am adding in a hardcoded example templateList for before I implement the CoreDate Features of the app.
-        
-        
-        /*
-        //var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", listItems: [], description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!")
-        
-        var tempTemplateList = ListTemplate(templateName: "French Toast Recipe", description: "My favorite French Toast Recipe that I make on the weekends. Just like Mom used to make!", listItems: [])
-        
-        tempTemplateList.listItems.append(ListItem(itemText: "2 eggs"))
-        tempTemplateList.listItems.append(ListItem(itemText: "2/3 cup milk"))
-        tempTemplateList.listItems.append(ListItem(itemText: "1/4 tsp cinnamon"))
-        tempTemplateList.listItems.append(ListItem(itemText: "1/4 tsp nutmeg"))
-        tempTemplateList.listItems.append(ListItem(itemText: "1 tsp vanilla"))
-        tempTemplateList.listItems.append(ListItem(itemText: "Bread"))
-        
-        
-        templateListsArr.append(tempTemplateList)
- 
-        */
-        
-        // TODO: retrieve the templateLists from the DataModel and display them to the screen here.
-        
         templateListsArr = util.loadAllTemplatesFromDataModel()
         
         
@@ -117,57 +94,13 @@ class TemplatesTableViewController: UITableViewController {
             
             let removed = templateListsArr.remove(at: indexPath.row)
             
-            let parentID = removed.templateID
+            util.deleteTemplateListFromDataModel(toDelete: removed)
+            
+            //let parentID = removed.templateID
             
             tableView.deleteRows(at: [indexPath], with: .fade)
             
-            // TODO: remove the corresponding object from the DataModel of the app.
             
-            // remove the main listTemplate object from the DataModel
-            
-            let templateFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TemplateListData")
-            
-            templateFetchRequest.predicate = NSPredicate(format: "templateID == %@", parentID)
-            
-            var templateItemToBeRemoved: [NSManagedObject]!
-            
-            do {
-                templateItemToBeRemoved = try util.managedObjectContext.fetch(templateFetchRequest)
-            } catch {
-                print("Fetching From DataModel Error: \(error)")
-            }
-            
-            for item in templateItemToBeRemoved {
-                
-                print("deletion loop:")
-                //printFoodItemDataObj(item)
-                util.managedObjectContext.delete(item)
-            }
-            
-            
-            // remove all the ListItems from the DataModel that are associated with that main ListTemplate as well.
-            
-            let listItemFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ListItemData")
-            
-            listItemFetchRequest.predicate = NSPredicate(format: "parentID == %@", parentID)
-            
-            var listItemToBeRemoved: [NSManagedObject]!
-            
-            do {
-                listItemToBeRemoved = try util.managedObjectContext.fetch(listItemFetchRequest)
-            } catch {
-                print("Fetching From DataModel Error: \(error)")
-            }
-            
-            for item in listItemToBeRemoved {
-                
-                print("deletion loop:")
-                //printFoodItemDataObj(item)
-                util.managedObjectContext.delete(item)
-            }
-            
-            // save the context so that the deletions are persistant.
-            util.appDelegate.saveContext()
             
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
