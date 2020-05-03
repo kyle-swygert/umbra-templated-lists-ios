@@ -10,6 +10,22 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    
+    // this label will update to the correct version of the app when the app version is changed inside the info.plist file.
+    @IBOutlet weak var versionLabel: UILabel!
+    
+    
+    @IBAction func gitHubButtonTapped(_ sender: Any) {
+        // when this button is tapped, follow the link to the Github repo that is setup for the app.
+        
+        print("GitHub button tapped")
+        
+        UIApplication.shared.open(URL(string: "https://github.com/kyle-swygert/mobile-app-dev-final-project")!, options: [:], completionHandler: nil)
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +34,14 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        var versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        
+        versionLabel.text = "Version: \(versionNumber ?? "0.0")"
+        
+        
+        self.tableView.rowHeight = 55
+        
     }
 
     // MARK: - Table view data source

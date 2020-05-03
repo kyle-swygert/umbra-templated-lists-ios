@@ -277,14 +277,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="displayUsableCell" id="tc9-ib-rMN" customClass="DisplayTemplateCell" customModule="Umbra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="53.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc9-ib-rMN" id="DGB-lN-4YJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxi-km-InF">
-                                            <rect key="frame" x="21" y="16" width="42" height="21"/>
+                                            <rect key="frame" x="21" y="16" width="42" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -478,6 +478,21 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONH-dT-NCb" id="gIK-tf-1hd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y79-QA-G7c">
+                                                    <rect key="frame" x="16" y="4" width="126" height="35"/>
+                                                    <state key="normal" title="GitHub Repository"/>
+                                                    <connections>
+                                                        <action selector="gitHubButtonTapped:" destination="aJw-zV-pqe" eventType="touchUpInside" id="QCY-zW-JRf"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y79-QA-G7c" secondAttribute="trailing" constant="20" symbolic="YES" id="Ndk-t6-ZQC"/>
+                                                <constraint firstItem="y79-QA-G7c" firstAttribute="leading" secondItem="gIK-tf-1hd" secondAttribute="leading" constant="16" id="SyW-BJ-REu"/>
+                                                <constraint firstItem="y79-QA-G7c" firstAttribute="top" secondItem="gIK-tf-1hd" secondAttribute="top" constant="4" id="iq4-2l-aqf"/>
+                                                <constraint firstAttribute="bottom" secondItem="y79-QA-G7c" secondAttribute="bottom" constant="5" id="lut-uW-TNC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="p5Y-zH-iWP">
@@ -486,6 +501,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p5Y-zH-iWP" id="4WS-S6-97H">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Written By Kyle Swygert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBj-Q1-3uf">
+                                                    <rect key="frame" x="21" y="16" width="184" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EBj-Q1-3uf" firstAttribute="top" secondItem="4WS-S6-97H" secondAttribute="topMargin" constant="5" id="5KG-pF-fJe"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EBj-Q1-3uf" secondAttribute="trailing" constant="20" symbolic="YES" id="i5D-fm-nDd"/>
+                                                <constraint firstItem="EBj-Q1-3uf" firstAttribute="leading" secondItem="4WS-S6-97H" secondAttribute="leadingMargin" constant="5" id="iFV-PQ-60r"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EBj-Q1-3uf" secondAttribute="bottom" constant="5" id="mPJ-x3-C98"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Gxq-oC-Ktf">
@@ -494,6 +523,20 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gxq-oC-Ktf" id="reU-ef-rtJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOa-9q-uWz" userLabel="APP_VERSION">
+                                                    <rect key="frame" x="21" y="16" width="42" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aOa-9q-uWz" secondAttribute="trailing" constant="20" symbolic="YES" id="1ku-sk-NYW"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="aOa-9q-uWz" secondAttribute="bottom" constant="5" id="A0m-9L-W4s"/>
+                                                <constraint firstItem="aOa-9q-uWz" firstAttribute="top" secondItem="reU-ef-rtJ" secondAttribute="topMargin" constant="5" id="BM1-2b-UXj"/>
+                                                <constraint firstItem="aOa-9q-uWz" firstAttribute="leading" secondItem="reU-ef-rtJ" secondAttribute="leadingMargin" constant="5" id="HV4-3W-0Ug"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -534,6 +577,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" prompt="Umbra" id="d2D-9o-qwL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="versionLabel" destination="aOa-9q-uWz" id="bdj-H3-GYf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7zt-O4-c86" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
