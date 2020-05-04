@@ -50,8 +50,18 @@ class ListsTableViewController: UITableViewController {
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        print("The view did appear")
+        //print("The view did appear")
+        
+        
+        currUsableListArr = util.loadAllUsableListsFromDataModel()
+        
+        
+        // reload the data of the tableView. All the Lists may have been deleted.
+        tableView.reloadData()
+        
+        print("ListsTableView Did Appear")
     }
 
     // MARK: - Table view data source

@@ -50,6 +50,17 @@ class TemplatesTableViewController: UITableViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // reload the data. All the templates may have been deleted.
+        
+        templateListsArr = util.loadAllTemplatesFromDataModel()
+        
+        tableView.reloadData()
+        print("TemplateTableView Did Appear")
+        
+    }
+    
     
     // MARK: - Table view data source
     
