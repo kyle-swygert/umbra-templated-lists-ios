@@ -27,3 +27,8 @@ SettingsTableViewController:
   ☐ possibly add setting for changing highlight colors in the app
     ☐ allow user to select from light blue, purple, green, red, pink, orange
     ☐ change the color of the buttons, tabBar selector, and navigation bar. 
+
+
+
+
+☐ trying to make a usable list when there is no templates in the app causes an error in the app. FIX THIS IMMEDIATELY!!!

@@ -30,8 +30,6 @@
 		24BDBA6E245A0AD100EBF233 /* DisplayUsableListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */; };
 		24BDBA70245A0BAC00EBF233 /* DisplayUsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */; };
 		24BDBA72245A123300EBF233 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA71245A123300EBF233 /* CheckBox.swift */; };
-		24BDBA74245A93A400EBF233 /* goblin.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBA73245A93A400EBF233 /* goblin.jpeg */; };
-		24BDBA76245B312800EBF233 /* JotaroProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 24BDBA75245B312700EBF233 /* JotaroProfile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,8 +58,6 @@
 		24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsableListTableViewController.swift; sourceTree = "<group>"; };
 		24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsableCell.swift; sourceTree = "<group>"; };
 		24BDBA71245A123300EBF233 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		24BDBA73245A93A400EBF233 /* goblin.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = goblin.jpeg; sourceTree = "<group>"; };
-		24BDBA75245B312700EBF233 /* JotaroProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JotaroProfile.png; sourceTree = "<group>"; };
 		24BDBA77245DFBB500EBF233 /* Umbra 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Umbra 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,8 +115,6 @@
 				24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */,
 				24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */,
 				24BDBA71245A123300EBF233 /* CheckBox.swift */,
-				24BDBA75245B312700EBF233 /* JotaroProfile.png */,
-				24BDBA73245A93A400EBF233 /* goblin.jpeg */,
 			);
 			path = Umbra;
 			sourceTree = "<group>";
@@ -184,9 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249E5B6B2412C8A400E0406E /* LaunchScreen.storyboard in Resources */,
-				24BDBA76245B312800EBF233 /* JotaroProfile.png in Resources */,
 				249E5B682412C8A400E0406E /* Assets.xcassets in Resources */,
-				24BDBA74245A93A400EBF233 /* goblin.jpeg in Resources */,
 				249E5B662412C8A200E0406E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

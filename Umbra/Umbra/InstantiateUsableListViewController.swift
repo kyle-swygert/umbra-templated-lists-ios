@@ -35,11 +35,39 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
     
     var currSelectedTemplate: ListTemplate!
     
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // set the currently selected ListTemplate
+        // NOTE: I think that my app will only work if there is at least ione template in the app. try to see if that is the case, and if it is, attempt to fix it by not allowing the action to occur and popping up an alert saying "there are no templates to chose from.
+        // default. select the first item to be the selected template.
+        
+        if allTemplates.count > 0 {
+            currSelectedTemplate = allTemplates[0]
+        } else {
+            
+            // there are no templates in this app, dismiss this view controller and go back to the tab view.
+            
+            navigationController?.popToRootViewController(animated: true)
+            
+            //navigationController?.popViewController(animated: true)
+            
+            //navigationController?.dismiss(animated: true, completion: nil)
+            
+            //self.dismiss(animated: true, completion: nil)
+            
+            
+            
+            
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         
         
         
@@ -59,10 +87,8 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         self.currTemplateTableView.dataSource = self
         
         
-        // set the currently selected ListTemplate
-        // NOTE: I think that my app will only work if there is at least ione template in the app. try to see if that is the case, and if it is, attempt to fix it by not allowing the action to occur and popping up an alert saying "there are no templates to chose from.
-        // default. select the first item to be the selected template.
-        currSelectedTemplate = allTemplates[0]
+        
+        
         
         
     }
@@ -147,9 +173,14 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         // the currently selected template object will change depending on the item selected in the picker.
         // when the picker selection is changed, the table view will be changed to show all the items that are part of that list.
         
+        if currSelectedTemplate == nil {
+            return 0
+        } else {
+            // need to return +1 to account for the description of the list, as well as the listItems themselves.
+            return currSelectedTemplate.listItems.count + 1
+        }
         
-        // need to return +1 to account for the description of the list, as well as the listItems themselves.
-        return currSelectedTemplate.listItems.count + 1
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

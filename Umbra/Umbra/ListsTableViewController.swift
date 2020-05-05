@@ -29,6 +29,18 @@ class ListsTableViewController: UITableViewController {
         
         print("newListButtonTapped()")
         
+//        
+//        var templates = util.loadAllTemplatesFromDataModel()
+//        
+//        
+//        if templates.count > 0 {
+//            performSegue(withIdentifier: "fromListsToInstantiateListView", sender: nil)
+//        } else {
+//            print("there are no templates in the app, cannot perform the segue. ")
+//        }
+//        
+        
+        
         
     }
     
@@ -85,6 +97,7 @@ class ListsTableViewController: UITableViewController {
         
         return cell
     }
+    
     
 
     /*

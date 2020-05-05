@@ -277,14 +277,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="displayUsableCell" id="tc9-ib-rMN" customClass="DisplayTemplateCell" customModule="Umbra" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="53.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="53"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tc9-ib-rMN" id="DGB-lN-4YJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxi-km-InF">
-                                            <rect key="frame" x="21" y="16" width="42" height="21.5"/>
+                                            <rect key="frame" x="21" y="16" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
