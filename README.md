@@ -28,27 +28,53 @@ For example, making your favorite recipe! In Umbra, you can simply make a templa
 
 ### Creating a List Template
 1. From the Templates tab, tap on the New Template Button to go to the Create Template page.
-screenshot
+
+![](screenshots/template-lists.png)
+![](screenshots/create-template-empty.png)
+
 2. Fill in the Template Title and Description for the list.
-screenshot
+
+![](screenshots/create-template-w-title-and-desc.png)
+
 3. To insert List Items for your Template, tap the New List Item to create one List Item.
-screenshot
+ 
+![](screenshots/create-template1.png)
+
    - If you added an item by mistake, you can swipe left on the List Item to delete it.
-   - screenshot
+
+![](screenshots/create-template6.png)
+![](screenshots/create-template-delete-item.png)
+![](screenshots/create-template7.png)
+
 4. When you have added all the List Items you want, tap the Save button to save the Template and go back to the Template Tab
    - If you decide that you don't want to make the new template, you can tap the Back button and the Template will not be saved. 
    - When back at the Template Tab, you can tap on the Template Title to see all the contents of the list.
-   - screenshot
+
+![](screenshots/usable-lists2.png)
+![](screenshots/view-template.png)
+
    - When you decide you want to delete a Template, simply swipe left on the Template Title to delete. 
 
+![](screenshots/delete-template.png)
 
 ### Creating a Usable List
 1. From the Lists Tab, tap on the New List Button to create a Usable List. 
 2. The available List Templates will be listed in a Picker on the top half of the display, while the bottom half of the display shows the contents of the list itself. 
-3. Scroll to the Template you would like in the picker, then tap the Accept button at the top to save your choice and go back to the List Tab .
+
+![](screenshots/create-usable-list.png)
+
+3. Scroll to the Template you would like in the picker, then tap the Accept button at the top to save your choice and go back to the List Tab.
+
+![](screenshots/usable-list-tapped.png)
+
    - When back in the List Tab, tapping a List Title shows the contents of the list, and each List Item can be tapped to mark the item as complete. Tapping again will uncheck the item. 
+
+![](screenshots/view-usable-list2.png)
+
    - The checked items will be saved when the List Contents is dismissed. 
    - When you decide you want to delete a Usable List, simply swipe left on the Usable List Title tp delete. 
+
+![](screenshots/delete-usable-list.png)
 
 
 ### Settings and information page
@@ -57,4 +83,4 @@ In the Settings Tab, there are three main things that can be done.
 2. Delete all the List Templates from the app. 
 3. Delete all the Usable Lists from the app. 
 
-screenshot
+![](screenshots/settings-tab.png)
