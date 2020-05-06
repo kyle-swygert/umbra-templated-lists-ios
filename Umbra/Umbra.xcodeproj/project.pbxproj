@@ -28,8 +28,6 @@
 		249E5B7B2412CD4700E0406E /* ListTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B7A2412CD4700E0406E /* ListTemplate.swift */; };
 		249E5B7D2412CE8B00E0406E /* UsableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E5B7C2412CE8B00E0406E /* UsableList.swift */; };
 		24BDBA6E245A0AD100EBF233 /* DisplayUsableListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */; };
-		24BDBA70245A0BAC00EBF233 /* DisplayUsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */; };
-		24BDBA72245A123300EBF233 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BDBA71245A123300EBF233 /* CheckBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +54,6 @@
 		249E5B7A2412CD4700E0406E /* ListTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTemplate.swift; sourceTree = "<group>"; };
 		249E5B7C2412CE8B00E0406E /* UsableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsableList.swift; sourceTree = "<group>"; };
 		24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsableListTableViewController.swift; sourceTree = "<group>"; };
-		24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayUsableCell.swift; sourceTree = "<group>"; };
-		24BDBA71245A123300EBF233 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		24BDBA77245DFBB500EBF233 /* Umbra 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Umbra 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,8 +109,6 @@
 				24434024245516D300321460 /* InstantiateUsableListViewController.swift */,
 				244340262458ACC000321460 /* DataModelManagement.swift */,
 				24BDBA6D245A0AD100EBF233 /* DisplayUsableListTableViewController.swift */,
-				24BDBA6F245A0BAC00EBF233 /* DisplayUsableCell.swift */,
-				24BDBA71245A123300EBF233 /* CheckBox.swift */,
 			);
 			path = Umbra;
 			sourceTree = "<group>";
@@ -194,7 +188,6 @@
 				241140D8244670BC00339B5A /* DisplayTemplateTableViewController.swift in Sources */,
 				241140DC2446982800339B5A /* CreateTemplateViewController.swift in Sources */,
 				24434025245516D300321460 /* InstantiateUsableListViewController.swift in Sources */,
-				24BDBA72245A123300EBF233 /* CheckBox.swift in Sources */,
 				249E5B732412CA1C00E0406E /* TemplatesTableViewController.swift in Sources */,
 				244040C72440FE8500FF0A11 /* Umbra.xcdatamodeld in Sources */,
 				249E5B7B2412CD4700E0406E /* ListTemplate.swift in Sources */,
@@ -206,7 +199,6 @@
 				249E5B7D2412CE8B00E0406E /* UsableList.swift in Sources */,
 				244040CD24411A8B00FF0A11 /* UsableListCell.swift in Sources */,
 				244040CF24411ABD00FF0A11 /* ListItemCell.swift in Sources */,
-				24BDBA70245A0BAC00EBF233 /* DisplayUsableCell.swift in Sources */,
 				244040CB24411A7100FF0A11 /* ListTemplateCell.swift in Sources */,
 				249E5B5F2412C8A200E0406E /* SceneDelegate.swift in Sources */,
 				249E5B772412CA4300E0406E /* ListsTableViewController.swift in Sources */,

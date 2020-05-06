@@ -62,7 +62,8 @@ class ListItem {
     }
     
     
-    init(itemText: String, itemID: String, isChecked: Bool, itemOrder: Int) {
+    // constructor with default parameters.
+    init(itemText: String = "itemText", itemID: String = "itemID", isChecked: Bool = false, itemOrder: Int = -1) {
         self.itemText = itemText
         self.itemID = itemID
         self.isChecked = isChecked
