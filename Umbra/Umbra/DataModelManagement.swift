@@ -38,7 +38,7 @@ class DataStorageUtils {
         var templateListsArr: [ListTemplate] = []
         
         
-        var allTemplates = getTemplateItems()
+        let allTemplates = getTemplateItems()
         
         // for each item in the allTemplates list, get the ListItems for the specified parentID
         
@@ -46,7 +46,7 @@ class DataStorageUtils {
             
             printTemplateDataObj(temp)
             
-            var currList = templateData2TemplateObj(temp)
+            let currList = templateData2TemplateObj(temp)
             
             let childrenItems = getListItemsForParentTemplate(temp)
             
@@ -59,7 +59,7 @@ class DataStorageUtils {
             for child in childrenItems {
                 // create a ListItem object from child and add it to the newly created ListTemplate object.
                 
-                var currChild = listItemData2ListItemObj(child)
+                let currChild = listItemData2ListItemObj(child)
                 
                 currList.listItems.append(currChild)
                 
@@ -111,10 +111,6 @@ class DataStorageUtils {
         }
         
         
-        
-        //return ListItem(itemText: itemText, itemID: itemID, itemOrder: itemOrder)
-        
-        
         return ListItem(itemText: itemText, itemID: itemID, isChecked: isChecked!, itemOrder: itemOrder)
         
         
@@ -125,7 +121,6 @@ class DataStorageUtils {
         let name = template.value(forKey: "templateName") as? String
         
         print("Current Template Name: \(name!)")
-        
         
     }
     
@@ -153,8 +148,8 @@ class DataStorageUtils {
         
         let parentID = parentTemplate.value(forKey: "templateID") as? String
         
-        print("getListItemsForParentTemplate()")
-        print("Current parentID: \(parentID!)")
+        //print("getListItemsForParentTemplate()")
+        //print("Current parentID: \(parentID!)")
         
         var allListItems: [NSManagedObject] = []
         
@@ -170,8 +165,6 @@ class DataStorageUtils {
         
         
         return allListItems
-        
-        
         
         
     }
@@ -233,8 +226,7 @@ class DataStorageUtils {
         
         // this function will store the Usable list into the DataModel the first time that it is intantiated in the app.
         
-        // this function will NOT be used to update the values of the
-        
+        // this function will NOT be used to update the values of the isChecked variables for each ListItemData entity.
         
         // when storing UsableList items in this function, make sure that the parentID for the ListItemData objects is the ID string for the UsableList itself, not the ListTemplate that the UsableList was created from.
         
@@ -312,8 +304,8 @@ class DataStorageUtils {
         
         let parentID = parentTemplate.value(forKey: "usableID") as? String
         
-        print("getListItemsForParentUsableList()")
-        print("Current parentID: \(parentID!)")
+        //print("getListItemsForParentUsableList()")
+        //print("Current parentID: \(parentID!)")
         
         var allListItems: [NSManagedObject] = []
         
@@ -330,28 +322,25 @@ class DataStorageUtils {
         
         return allListItems
         
-        
-        
-        
     }
     
     func loadAllUsableListsFromDataModel() -> [UsableList] {
         
         var usableListsArr: [UsableList] = []
         
-        var allUsableObj = getUsableListItems()
+        let allUsableObj = getUsableListItems()
         
         
         for temp in allUsableObj {
             
-            var currUsable = usableData2UsableObj(temp)
+            let currUsable = usableData2UsableObj(temp)
             
             let childrenItems = getListItemsForParentUsableList(temp)
             
             
             for child in childrenItems {
                 
-                var currChild = listItemData2ListItemObj(child)
+                let currChild = listItemData2ListItemObj(child)
                 
                 currUsable.listItems.append(currChild)
                 
@@ -398,20 +387,16 @@ class DataStorageUtils {
     
     func updateUsableListDataModelObjects(toUpdate: UsableList) {
         
-        print("updating the listItems for the list: \(toUpdate.listName) \(toUpdate.listID)")
-        
-        
-        //print("NOT YET IMPLEMENTED!!!")
 
         // query the DataModel for the ListItems with the listID from the UsableList.
         
         
         // get the UsableList DataModel object, then we can use the getListItemsForParentUsableList() function to get the ListItems associated with the specific usableList
         
-        var usableDataObj = getUsableListDataObj(toGet: toUpdate)
+        let usableDataObj = getUsableListDataObj(toGet: toUpdate)
         
         
-        var usableListItems = getListItemsForParentUsableList(usableDataObj)
+        let usableListItems = getListItemsForParentUsableList(usableDataObj)
         
         // iterate through the listItems in the UsableList and set the DataModel objects to the same isChecked value, then save the contex with the updated ListItems in the DataModel.
         
@@ -422,7 +407,7 @@ class DataStorageUtils {
             
             // get the ListItem object that is associated with teh current item
             
-            var tempListItem = toUpdate.listItems.first(where: { $0.itemID == item.value(forKey: "itemID") as! String })
+            let tempListItem = toUpdate.listItems.first(where: { $0.itemID == item.value(forKey: "itemID") as! String })
             
             
             
@@ -461,7 +446,7 @@ class DataStorageUtils {
 
         for item in listItemToBeRemoved {
 
-            print("deletion loop:")
+            //print("deletion loop:")
             //printFoodItemDataObj(item)
             managedObjectContext.delete(item)
         }
@@ -493,7 +478,7 @@ class DataStorageUtils {
         
         for item in usableItemToBeRemove {
             
-            print("deleting usableList")
+            //print("deleting usableList")
             
             managedObjectContext.delete(item)
             
@@ -528,7 +513,7 @@ class DataStorageUtils {
         
         for item in templateItemToBeRemoved {
             
-            print("deletion loop:")
+            //print("deletion loop:")
             //printFoodItemDataObj(item)
             managedObjectContext.delete(item)
         }

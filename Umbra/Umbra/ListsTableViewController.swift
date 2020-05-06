@@ -27,33 +27,13 @@ class ListsTableViewController: UITableViewController {
         // make sure to cover the cases of the user selecting the list properly, or canceling the selection.
         
         
-        print("newListButtonTapped()")
-        
-//        
-//        var templates = util.loadAllTemplatesFromDataModel()
-//        
-//        
-//        if templates.count > 0 {
-//            performSegue(withIdentifier: "fromListsToInstantiateListView", sender: nil)
-//        } else {
-//            print("there are no templates in the app, cannot perform the segue. ")
-//        }
-//        
-        
-        
-        
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+       
         tableView.rowHeight = 55
         
         
@@ -100,14 +80,6 @@ class ListsTableViewController: UITableViewController {
     
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -115,7 +87,7 @@ class ListsTableViewController: UITableViewController {
             // Delete the row from the data source
             
             
-            var toRemove = currUsableListArr.remove(at: indexPath.row)
+            let toRemove = currUsableListArr.remove(at: indexPath.row)
             
             
             util.deleteUsableListFromDataModel(toDelete: toRemove)
@@ -130,22 +102,6 @@ class ListsTableViewController: UITableViewController {
     }
     
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -168,10 +124,6 @@ class ListsTableViewController: UITableViewController {
             // the loaded lists are passed to the view before the class is fully loaded into the app. 
             destVC.allTemplates = templateListsArr
             
-            
-            
-            
-           
         } // end of block for first segue block.
         
         else if (segue.identifier == "fromUsableListsToSingleList") {
@@ -183,11 +135,7 @@ class ListsTableViewController: UITableViewController {
             
             destVC.selectedUsableList = currUsableListArr[currIndexPath!.row]
             
-            
-            print("")
-            
-            
-            
+           
         }
         
         
@@ -198,32 +146,26 @@ class ListsTableViewController: UITableViewController {
     
     @IBAction func unwindFromDisplayUsableList(sender: UIStoryboardSegue) {
         
-        print("unwindFromDisplayUsableList()")
-        
-        // this is the function that should store all the lists back into the DataModel with the updated bool values for the ListItems.
-        // I might want to just store the previously displayed UsableList so that the app only stores the things that were just changed.
-        
-        
         
     }
     
     
     @IBAction func unwindFromInstantiateListView(sender: UIStoryboardSegue) {
         
-        print("unwindFromInstantiateListView()")
+        //print("unwindFromInstantiateListView()")
         
         let prevVC = sender.source as! InstantiateUsableListViewController
         
         // get the selected list from the previous view and add a new instance of that UsableList to the tableView in this controller.
         
-        print("selected ListTemplate: \(prevVC.currSelectedTemplate.templateName)")
+        //print("selected ListTemplate: \(prevVC.currSelectedTemplate.templateName)")
         
         
         // now instantiate a version of this template that can be used by the user with checkBoxes and add that object to the tableView list of items.
         
         // append the new UsableList to the currUsableListArr array
         
-        var newUsableList = UsableList(listTemplate: prevVC.currSelectedTemplate)
+        let newUsableList = UsableList(listTemplate: prevVC.currSelectedTemplate)
         
         
         // store the newly instantiated UsableList into the DataModel for use later

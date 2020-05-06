@@ -20,11 +20,6 @@ class TemplatesTableViewController: UITableViewController {
         
         // segue to a new view where the user will create a new template.
         
-        // when the user is finished creating the template, the ListTemplate object will be passed back to this view and added to the tableView.
-        
-        // make sure to account for if the user fully completes the template, or cancels the template creation.
-        
-        print("newTemplateButtonTapped")
         
         
     }
@@ -32,16 +27,7 @@ class TemplatesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
-        
-        
-        
+       
         tableView.rowHeight = 55
         
         templateListsArr = util.loadAllTemplatesFromDataModel()
@@ -80,7 +66,7 @@ class TemplatesTableViewController: UITableViewController {
         
         // Configure the cell...
         
-        var currTemplateList = templateListsArr[indexPath.row]
+        let currTemplateList = templateListsArr[indexPath.row]
         
         cell.templateTitleLabel.text = currTemplateList.templateName
         
@@ -88,14 +74,6 @@ class TemplatesTableViewController: UITableViewController {
         return cell
     }
     
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
     
     // Override to support editing the table view.
@@ -119,28 +97,6 @@ class TemplatesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // when the row of the tableView is selected, segue to a view that displays all datamembers in the templateList.
-        // pass the whole current templateList object to the other view during a segue.
-        
-        
-        let currTemplateList = templateListsArr[indexPath.row]
-        
-        // TEST: remove print later.
-        print("Selected Cell: \(currTemplateList.templateName)")
-        print("List Items:")
-        
-        var count = 0
-        
-        for item in currTemplateList.listItems {
-            
-            print("item \(count): \(item.itemText)")
-            
-            count += 1
-        }
-        
-        
-        // create a segue to another view and initialize the view items.
         
     }
     
@@ -195,8 +151,6 @@ class TemplatesTableViewController: UITableViewController {
         if (segue.identifier == "fromListTemplatesToDisplayTemplate") {
             // get the destination of the view and set the ListTemplate as the object that was just tapped.
             
-            //let cell = sender as! ListTemplateCell
-            
             let currIndexPath = self.tableView.indexPathForSelectedRow
             
             
@@ -206,10 +160,6 @@ class TemplatesTableViewController: UITableViewController {
             
             
             let dest = segue.destination as! DisplayTemplateTableViewController
-            
-            
-            // TODO: How to get the actual cell that was just tapped on? could I get it from the sender object?
-            
             
             dest.currListTemplate = templateListsArr[currIndexPath!.row]
             

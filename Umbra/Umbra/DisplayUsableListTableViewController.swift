@@ -16,20 +16,8 @@ class DisplayUsableListTableViewController: UITableViewController {
     
     var selectedUsableList: UsableList!
     
-    var checkBoxImage: UIImage!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        checkBoxImage = UIImage(named: "checkmark.square.fill")
-        
-        
         
     }
     
@@ -79,7 +67,7 @@ class DisplayUsableListTableViewController: UITableViewController {
         default: // list Items
             
             
-            var currListItem = selectedUsableList.listItems[indexPath.row - 2]
+            let currListItem = selectedUsableList.listItems[indexPath.row - 2]
             
             
             cell.displayLabel.text = selectedUsableList.listItems[indexPath.row - 2].itemText
@@ -96,26 +84,11 @@ class DisplayUsableListTableViewController: UITableViewController {
                 
             }
             
-            
-            
-            //cell.checkedImageView?.image = UIImage(named: "goblin.jpeg")
-            
-            //cell.checkedImageView?.image = nil
-            
             break
             
             
         }
 
-        
-        // this is where each cell will be initialized.
-        
-        // only display the imageView of the cell with a checkBox in it if the isChecked variable for that listItem is set to true.
-        
-        
-        // TODO: Set the image view to the checkbox.
-        
-        
         
         return cell
     }
@@ -132,8 +105,8 @@ class DisplayUsableListTableViewController: UITableViewController {
         
         if (indexPath.row > 1) {
 
-            var currCell = self.tableView.cellForRow(at: indexPath) as! UsableListCell
-            var currListItem = selectedUsableList.listItems[indexPath.row - 2]
+            let currCell = self.tableView.cellForRow(at: indexPath) as! UsableListCell
+            let currListItem = selectedUsableList.listItems[indexPath.row - 2]
             
             //currCell.checkedImageView.image = UIImage(named: "JotaroProfile.png")
             
@@ -141,60 +114,11 @@ class DisplayUsableListTableViewController: UITableViewController {
             currListItem.isChecked = !currListItem.isChecked
             
         } else {
-            
-            print("title or description tapped, do not display the checked image. ")
+            // title or description tapped, do not display the checked image
             
         }
         
-        
-        
-        
-        
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

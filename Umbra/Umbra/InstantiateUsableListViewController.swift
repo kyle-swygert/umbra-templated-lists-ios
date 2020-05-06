@@ -12,14 +12,8 @@ import CoreData
 
 class InstantiateUsableListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
-    
-    
     var managedObjectContext: NSManagedObjectContext!
     var appDelegate: AppDelegate!
-    
-    
-    
     
     
     // this picker will be populated with the names of the listTemplates that are stored in the app.
@@ -29,35 +23,19 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
     // this table view will display all the information that is associated with the currently selected list that is in the picker above. display the name, description, and the list items.
     @IBOutlet weak var currTemplateTableView: UITableView!
     
-    
     var allTemplates: [ListTemplate] = []
     
-    
     var currSelectedTemplate: ListTemplate!
-    
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         // set the currently selected ListTemplate
-        // NOTE: I think that my app will only work if there is at least ione template in the app. try to see if that is the case, and if it is, attempt to fix it by not allowing the action to occur and popping up an alert saying "there are no templates to chose from.
-        // default. select the first item to be the selected template.
         
         if allTemplates.count > 0 {
             currSelectedTemplate = allTemplates[0]
         } else {
             
             // there are no templates in this app, dismiss this view controller and go back to the tab view.
-            
             navigationController?.popToRootViewController(animated: true)
-            
-            //navigationController?.popViewController(animated: true)
-            
-            //navigationController?.dismiss(animated: true, completion: nil)
-            
-            //self.dismiss(animated: true, completion: nil)
-            
-            
-            
             
         }
     }
@@ -68,28 +46,14 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
 
         // Do any additional setup after loading the view.
         
-        
-        
-        
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedObjectContext = appDelegate.persistentContainer.viewContext
-        
-        // load all the templateLists into the program here.
-        // can use the same code as the TemplateTableViewController.
-        
-        
-        // populate the picker with the names of the templates in allTemplates.
         
         self.templateListPicker.delegate = self
         self.templateListPicker.dataSource = self
         
         self.currTemplateTableView.delegate = self
         self.currTemplateTableView.dataSource = self
-        
-        
-        
-        
-        
         
     }
     
@@ -115,18 +79,11 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         
         // the row for the picker was selected, display the contents of the description and the listItems in the tableView.
         
-        print("didSelectRow()...")
-        
         let count = currSelectedTemplate.listItems.count + 1
         
         currSelectedTemplate = nil
-        //currTemplateTableView.reloadData()
-        
-        
-        
-        
+       
         currTemplateTableView.beginUpdates()
-        
         
         // delete all the current rows in the table
         currTemplateTableView.deleteRows(at: (0..<count).map({ (i) in IndexPath(row: i, section: 0)}), with: .fade)
@@ -147,23 +104,9 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         
     }
     
-    
-    
-    
-    
     @IBAction func acceptButtonTapped(_ sender: UIButton) {
         
-        // the template has been selected, send this information back to the previous view to create a new instance of the list.
-        
-        
-        //var selectedTemp = self.templateListPicker.selectedRow(inComponent: 0)
-        
-        
-        
-        // trying to set the selected currSelectedTemplate object to the row that is selected in the picker in the view.
-        //self.currSelectedTemplate = templateListPicker.row
-        
-        
+       
     }
     
     // MARK: - TableView Functions
@@ -189,12 +132,8 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         
         let cell = currTemplateTableView.dequeueReusableCell(withIdentifier: "displayTemplateCell") as! DisplayTemplateCell
         
-        // NOTE: For testing
+        
         cell.displayCellLabel.text = "testing display string"
-        
-        // TODO: Display the actual content of the cell just like in the DisplayTemplateTableViewController
-        
-        // NOTE: Only display the description and the ListItems, since the name / title of the template will be in the picker view.
         
         
         if indexPath.row == 0 {
@@ -213,15 +152,5 @@ class InstantiateUsableListViewController: UIViewController, UITableViewDelegate
         return cell
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
